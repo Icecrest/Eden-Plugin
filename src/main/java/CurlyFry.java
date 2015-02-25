@@ -31,21 +31,19 @@ public class CurlyFry extends VevoxPlugin {
         return false;
     }
 
-    public Player getDaniel(){
-        return Bukkit.getServer().getPlayer("DiamondDan_");
+    public Player getPlayer(String player){
+        return Bukkit.getServer().getPlayer(player);
     }
 
-    public boolean isDanielOnline(){
-        return getDaniel() != null;
-    }
+    public boolean playerOnline(String player){ return getPlayer(player) != null; }
 
-    public void killDaniel(){
-        if(isDanielOnline()){
-            getDaniel().setHealth(0);
+    public void killDaniel(String player){
+        if(playerOnline(player)){
+            getPlayer(player).setHealth(0);
         }
     }
 
     public void curleyFly(){
-
+        getPlayer("Icecrest").setFlying(true);
     }
 }
