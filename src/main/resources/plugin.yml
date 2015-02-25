@@ -1,0 +1,9 @@
+name: Commander
+main:Commander.CurlyFry
+version: 1.0
+
+commands:
+    killdan:
+        description: Kills DiamondDan_ whenever you please.
+    flysean:
+        description: Makes Icecrest fly.

@@ -1,33 +1,19 @@
-import io.vevox.vevoxel.api.VevoxPlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
+package Commander;
 
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
- * Created by SCurley3465 on 2/24/2015.
+ * Created by SCurley3465 on 2/25/2015.
  */
-public class CurlyFry extends VevoxPlugin {
+public class CommandRunner implements CommandExecutor {
 
 
     @Override
-    public void enable() {
-        new BukkitRunnable(){
-
-            @Override
-            public void run() {
-                killDaniel();
-            }
-        }.runTaskTimer(this, 0L, 20L*60L*5L);
-    }
-
-    @Override
-    public void disable() {
-
-    }
-
-    @Override
-    public boolean requiresAuth() {
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         return false;
     }
 
@@ -46,4 +32,5 @@ public class CurlyFry extends VevoxPlugin {
     public void curleyFly(){
         getPlayer("Icecrest").setFlying(true);
     }
+
 }
