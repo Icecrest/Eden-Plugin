@@ -16,6 +16,7 @@ public class CurlyFry extends VevoxPlugin {
     public void enable() {
         getCommand("killdan").setExecutor(new CommandRunner());
         getCommand("flysean").setExecutor(new CommandRunner());
+        getCommand("tpr").setExecutor(new CommandRunner());
     }
 
     @Override

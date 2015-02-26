@@ -7,3 +7,5 @@ commands:
         description: Kills DiamondDan_ whenever you please.
     flysean:
         description: Makes Icecrest fly.
+    tpr:
+        description: Teleport to a random location.

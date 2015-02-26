@@ -1,11 +1,13 @@
 package Commander;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
+import java.util.Random;
 /**
  * Created by SCurley3465 on 2/25/2015.
  */
@@ -14,6 +16,13 @@ public class CommandRunner implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if(command.getName().equalsIgnoreCase("killdan")){
+            killPlayer("DiamondDan_");
+        }else if(command.getName().equalsIgnoreCase("curleyfly")){
+            curleyFly();
+        }else if(command.getName().equalsIgnoreCase("tpr") && commandSender instanceof Player){
+            teleportToRandomLocation((Player) commandSender);
+        }
         return false;
     }
 
@@ -23,9 +32,10 @@ public class CommandRunner implements CommandExecutor {
 
     public boolean playerOnline(String player){ return getPlayer(player) != null; }
 
-    public void killDaniel(String player){
+    public void killPlayer(String player){
         if(playerOnline(player)){
             getPlayer(player).setHealth(0);
+            Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.RED+player+" FATILITY");
         }
     }
 
@@ -33,4 +43,12 @@ public class CommandRunner implements CommandExecutor {
         getPlayer("Icecrest").setFlying(true);
     }
 
+    public void teleportToRandomLocation(Player player){
+        Random r = new Random();
+        int x = r.nextInt(20000);
+        int z = r.nextInt(20000);
+        int y = 255;
+
+        player.teleport(new Location(player.getWorld(),x,y,z));
+    }
 }
