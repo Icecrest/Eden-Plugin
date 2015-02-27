@@ -7,6 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.omg.CORBA.UserException;
+
 import java.util.Random;
 /**
  * Created by SCurley3465 on 2/25/2015.
@@ -18,10 +20,13 @@ public class CommandRunner implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if(command.getName().equalsIgnoreCase("killdan")){
             killPlayer("DiamondDan_");
+            return true;
         }else if(command.getName().equalsIgnoreCase("curleyfly")){
             curleyFly();
+            return true;
         }else if(command.getName().equalsIgnoreCase("tpr") && commandSender instanceof Player){
             teleportToRandomLocation((Player) commandSender);
+            return true;
         }
         return false;
     }

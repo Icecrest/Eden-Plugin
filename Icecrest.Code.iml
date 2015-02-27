@@ -22,7 +22,7 @@
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.14" level="project" />
     <orderEntry type="library" name="Maven: net.md-5:bungeecord-chat:1.8-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.3.1" level="project" />
-    <orderEntry type="library" name="Maven: io.vevox:vevoxel-api:0.2-R01-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: io.vevox:vevoxel-api:0.1-R01-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.jdom:jdom2:2.0.5" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.34" level="project" />
   </component>

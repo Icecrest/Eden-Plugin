@@ -4,6 +4,7 @@ version: 1.0
 
 commands:
     killdan:
+        usage: /killdan
         description: Kills DiamondDan_ whenever you please.
     flysean:
         description: Makes Icecrest fly.
