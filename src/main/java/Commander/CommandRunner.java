@@ -1,13 +1,11 @@
 package Commander;
 
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.omg.CORBA.UserException;
 
 import java.util.Random;
 /**
@@ -55,5 +53,11 @@ public class CommandRunner implements CommandExecutor {
         int y = 255;
 
         player.teleport(new Location(player.getWorld(),x,y,z));
+    }
+
+    public void announce(String[] ss){
+         String s = ss[0];
+         Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA+"[BROADCAST] "+
+                                             org.bukkit.ChatColor.GREEN+s);
     }
 }

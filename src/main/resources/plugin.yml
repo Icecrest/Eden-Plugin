@@ -7,6 +7,9 @@ commands:
         usage: /killdan
         description: Kills DiamondDan_ whenever you please.
     flysean:
+        usage: /flysean
         description: Makes Icecrest fly.
     tpr:
+        usage: /tpr
         description: Teleport to a random location.
+
