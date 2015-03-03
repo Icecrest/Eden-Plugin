@@ -12,4 +12,6 @@ commands:
     tpr:
         usage: /tpr
         description: Teleport to a random location.
-
+    banlist:
+        usage: /banslist
+        description: Prints the entire ban list to the console.
