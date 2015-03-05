@@ -1,12 +1,7 @@
-package Commander;
+package Eden;
 
 import io.vevox.vevoxel.api.VevoxelPlugin;
-import io.vevox.vevoxel.data.PluginConfiguration;
-import io.vevox.vevoxel.vpm.VPMMeta;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 
 /**

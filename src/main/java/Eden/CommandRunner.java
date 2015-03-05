@@ -1,4 +1,4 @@
-package Commander;
+package Eden;
 
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -6,8 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 
@@ -30,6 +28,9 @@ public class CommandRunner implements CommandExecutor {
             return true;
         }else if(command.getName().equalsIgnoreCase("banlist")){
             edenBanList();
+            return true;
+        }else if(command.getName().equalsIgnoreCase(("testeden"))){
+            edenTest();
             return true;
         }
         return false;
@@ -66,6 +67,7 @@ public class CommandRunner implements CommandExecutor {
          Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA+"[BROADCAST] "+
                                              org.bukkit.ChatColor.GREEN+s);
     }
+
     public void edenBanList(){
         Set<BanEntry> bans = Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntries();
         if(!bans.isEmpty()) {
@@ -76,6 +78,7 @@ public class CommandRunner implements CommandExecutor {
             Bukkit.getServer().broadcastMessage("No one is banned on this server");
         }
     }
+
     public void edenTest(){
         Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "This command has run");
         Bukkit.getMotd().equalsIgnoreCase("Dont use this server dummy");

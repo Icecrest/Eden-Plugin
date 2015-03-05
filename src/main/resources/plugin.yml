@@ -1,5 +1,5 @@
-name: Commander
-main: Commander.Eden
+name: Eden
+main: Eden.Eden
 version: 1.0
 
 commands:
