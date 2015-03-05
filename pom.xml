@@ -6,7 +6,7 @@
 
     <groupId>io.github.icecrest</groupId>
     <artifactId>icecrestcode</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.7-SNAPSHOT</version>
 
     <repositories>
         <repository>

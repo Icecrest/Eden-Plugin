@@ -47,6 +47,9 @@ public class CommandRunner implements CommandExecutor {
             getPlayer(player).setHealth(0);
             Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.RED+player+" FATILITY");
         }
+        else{
+            Bukkit.getServer().broadcastMessage(ChatColor.GREEN+"This Player is not online!");
+        }
     }
 
     public void curleyFly(){
