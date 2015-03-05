@@ -15,3 +15,6 @@ commands:
   banlist:
     usage: /banslist
     description: Prints the entire ban list to the console.
+  testeden:
+    usage: /testeden
+    description: Tests to see if the command runner is working.

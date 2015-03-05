@@ -29,7 +29,7 @@ public class CommandRunner implements CommandExecutor {
             teleportToRandomLocation((Player) commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("banlist")){
-            banList();
+            edenBanList();
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public class CommandRunner implements CommandExecutor {
          Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA+"[BROADCAST] "+
                                              org.bukkit.ChatColor.GREEN+s);
     }
-    public void banList(){
+    public void edenBanList(){
         Set<BanEntry> bans = Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntries();
         if(!bans.isEmpty()) {
             Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "BAN LIST:" +
@@ -75,5 +75,9 @@ public class CommandRunner implements CommandExecutor {
         else{
             Bukkit.getServer().broadcastMessage("No one is banned on this server");
         }
+    }
+    public void edenTest(){
+        Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "This command has run");
+        Bukkit.getMotd().equalsIgnoreCase("Dont use this server dummy");
     }
 }

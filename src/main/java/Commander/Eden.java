@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 /**
  * Created by SCurley3465 on 2/24/2015.
  */
-@VPMMeta(author = "icecrest",name="Eden")
 public class Eden extends VevoxelPlugin {
 
 
@@ -27,6 +26,7 @@ public class Eden extends VevoxelPlugin {
         getCommand("flysean").setExecutor(new CommandRunner());
         getCommand("tpr").setExecutor(new CommandRunner());
         getCommand("banlist").setExecutor(new CommandRunner());
+        getCommand("testeden").setExecutor(new CommandRunner());
         saveDefaultConfig();
         FileConfiguration config = getConfig();
     }
