@@ -86,4 +86,11 @@ public class CommandRunner implements CommandExecutor {
         Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "This command has run");
         Bukkit.getMotd().equalsIgnoreCase("Dont use this server dummy");
     }
+
+    public void testPlayer(String player){
+        if(playerOnline(player)){
+            Bukkit.getServer().broadcastMessage(ChatColor.MAGIC+"aaaaa"+player + ChatColor.GOLD+"is online!"+
+                                                ChatColor.MAGIC+"aaaaa"+ChatColor.GOLD+"\nRejoice!");
+        }
+    }
 }
