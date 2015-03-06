@@ -4,8 +4,8 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-
 import java.util.Random;
 import java.util.Set;
 
@@ -14,6 +14,10 @@ import java.util.Set;
  */
 public class CommandRunner implements CommandExecutor {
 
+    private Eden edenplugin;
+    public CommandRunner(Eden e){
+        edenplugin = e;
+    }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -33,7 +37,10 @@ public class CommandRunner implements CommandExecutor {
             edenTest();
             return true;
         }else if(command.getName().equalsIgnoreCase("testplayer")){
-            testPlayer(strings[0]);
+            testPlayer(strings[0], commandSender);
+            return true;
+        }else if(command.getName().equalsIgnoreCase("announce")){
+            announce();
         }
         return false;
     }
@@ -64,13 +71,16 @@ public class CommandRunner implements CommandExecutor {
         int z = r.nextInt(20000);
         int y = 255;
 
-        player.teleport(new Location(player.getWorld(),x,y,z));
+        player.teleport(new Location(player.getWorld(), x, y, z));
     }
 
-    public void announce(String[] ss){
-         String s = ss[0];
-         Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA+"[BROADCAST] "+
-                                             org.bukkit.ChatColor.GREEN+s);
+    public void announce(){
+        FileConfiguration config = edenplugin.sendConfig();
+         Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA + "[BROADCAST] ");
+        for(int i = 0; i <config.getStringList("announcements").size(); i++){
+
+
+        }
     }
 
     public void edenBanList(){
@@ -89,12 +99,15 @@ public class CommandRunner implements CommandExecutor {
         Bukkit.getMotd().equalsIgnoreCase("Dont use this server dummy");
     }
 
-    public void testPlayer(String player){
+    public void testPlayer(String player, CommandSender sender){
         if(playerOnline(player)){
-            Bukkit.getServer().broadcastMessage(ChatColor.MAGIC+"aaaaa"+player + ChatColor.GOLD+"is online!"+
+            sender.sendMessage(ChatColor.MAGIC+"aaaaa"+player + ChatColor.GOLD+"is online!"+
                                                 ChatColor.MAGIC+"aaaaa"+ChatColor.GOLD+"\nRejoice!");
         }else{
-            Bukkit.getServer().broadcastMessage(player + "is not online!");
+            sender.sendMessage(player + "is not online!");
         }
+    }
+    public void showHelpFile(CommandSender sender){
+        sender.sendMessage("");
     }
 }
