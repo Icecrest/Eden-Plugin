@@ -18,3 +18,6 @@ commands:
   testeden:
     usage: /testeden
     description: Tests to see if the command runner is working.
+  testplayer:
+    usage: /testplayer [PLAYERNAME]
+    description: Tests for a player name and prints if they are online or not.

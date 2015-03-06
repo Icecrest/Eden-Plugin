@@ -22,6 +22,7 @@ public class Eden extends VevoxelPlugin {
         getCommand("tpr").setExecutor(new CommandRunner());
         getCommand("banlist").setExecutor(new CommandRunner());
         getCommand("testeden").setExecutor(new CommandRunner());
+        getCommand("testplayer").setExecutor(new CommandRunner());
         saveDefaultConfig();
         FileConfiguration config = getConfig();
     }

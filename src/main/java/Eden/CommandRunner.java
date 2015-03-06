@@ -32,6 +32,8 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase(("testeden"))){
             edenTest();
             return true;
+        }else if(command.getName().equalsIgnoreCase("testplayer")){
+            testPlayer(strings[1]);
         }
         return false;
     }
@@ -91,6 +93,8 @@ public class CommandRunner implements CommandExecutor {
         if(playerOnline(player)){
             Bukkit.getServer().broadcastMessage(ChatColor.MAGIC+"aaaaa"+player + ChatColor.GOLD+"is online!"+
                                                 ChatColor.MAGIC+"aaaaa"+ChatColor.GOLD+"\nRejoice!");
+        }else{
+            Bukkit.getServer().broadcastMessage(player + "is not online!");
         }
     }
 }
