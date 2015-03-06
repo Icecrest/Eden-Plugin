@@ -33,7 +33,7 @@ public class CommandRunner implements CommandExecutor {
             edenTest();
             return true;
         }else if(command.getName().equalsIgnoreCase("testplayer")){
-            testPlayer(strings[1]);
+            testPlayer(strings[0]);
         }
         return false;
     }
