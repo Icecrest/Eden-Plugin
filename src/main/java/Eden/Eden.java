@@ -13,24 +13,25 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Eden extends VevoxelPlugin {
 
     private FileConfiguration config;
+    private CommandRunner cmdr;
 
     @Override
     protected void loaded() {
-        //For VPM, don't touch dumbass.
+        //For VAM, don't touch dumbass.
     }
 
     @Override
     public void enabled() {
-        getCommand("killdan").setExecutor(new CommandRunner());
-        getCommand("flysean").setExecutor(new CommandRunner());
-        getCommand("tpr").setExecutor(new CommandRunner());
-        getCommand("banlist").setExecutor(new CommandRunner());
-        getCommand("testeden").setExecutor(new CommandRunner());
-        getCommand("testplayer").setExecutor(new CommandRunner());
-        getCommand("announce").setExecutor(new CommandRunner());
+        getCommand("killdan").setExecutor(cmdr);
+        getCommand("flysean").setExecutor(cmdr);
+        getCommand("tpr").setExecutor(cmdr);
+        getCommand("banlist").setExecutor(cmdr);
+        getCommand("testeden").setExecutor(cmdr);
+        getCommand("testplayer").setExecutor(cmdr);
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         this.config = config;
+        new Schedule().runTaskTimer(this, 0L, config.getInt("time")*60*20);
     }
 
     @Override

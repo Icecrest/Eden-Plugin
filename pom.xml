@@ -6,7 +6,7 @@
 
     <groupId>io.github.icecrest</groupId>
     <artifactId>icecrestcode</artifactId>
-    <version>1.7.3-SNAPSHOT</version>
+    <version>1.8-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -15,7 +15,7 @@
         </repository>
         <repository>
             <id>vevox-repo</id>
-            <url>http://vevox.io/mvn/artifacts</url>
+            <url>http://vevox.io/artifacts/public/mvn/</url>
         </repository>
     </repositories>
 
@@ -26,15 +26,15 @@
             <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-    <groupId>io.vevox</groupId>
+            <groupId>io.vevox</groupId>
             <artifactId>vevoxel-api</artifactId>
-            <version>0.5-R01-SNAPSHOT</version>
+            <version>0.5-R02-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
-<properties>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
-</properties>
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
 
 </project>

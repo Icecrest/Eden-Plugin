@@ -6,6 +6,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+import Eden.Schedule;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
@@ -39,8 +42,6 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("testplayer")){
             testPlayer(strings[0], commandSender);
             return true;
-        }else if(command.getName().equalsIgnoreCase("announce")){
-            announce();
         }
         return false;
     }
@@ -72,15 +73,6 @@ public class CommandRunner implements CommandExecutor {
         int y = 255;
 
         player.teleport(new Location(player.getWorld(), x, y, z));
-    }
-
-    public void announce(){
-        FileConfiguration config = edenplugin.sendConfig();
-         Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA + "[BROADCAST] ");
-        for(int i = 0; i <config.getStringList("announcements").size(); i++){
-
-
-        }
     }
 
     public void edenBanList(){
