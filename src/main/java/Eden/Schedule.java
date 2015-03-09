@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by SCurley3465 on 3/9/2015.
  */
 public class Schedule extends BukkitRunnable {
-    private Eden edenplugin;
+    private Eden edenplugin = new Eden();
     @Override
     public void run() {
         FileConfiguration config = edenplugin.sendConfig();
