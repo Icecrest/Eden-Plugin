@@ -116,8 +116,4 @@ public class CommandRunner implements CommandExecutor {
             sender.sendMessage(player + "is not online!");
         }
     }
-
-    public void showHelpFile(CommandSender sender){
-        sender.sendMessage("");
-    }
 }
