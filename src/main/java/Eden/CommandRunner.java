@@ -31,7 +31,11 @@ public class CommandRunner implements CommandExecutor {
             curleyFly(commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("tpr") && commandSender instanceof Player){
-            teleportToRandomLocation(strings[0], commandSender);
+            if(strings.length>= 0) {
+                teleportToRandomLocation(strings[0], commandSender);
+            }else{
+                teleportToRandomLocation(null,commandSender);
+            }
             return true;
         }else if(command.getName().equalsIgnoreCase("banlist")){
             edenBanList(commandSender);
