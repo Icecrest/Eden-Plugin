@@ -13,7 +13,7 @@ commands:
     usage: /tpr
     description: Teleport to a random location.
   banlist:
-    usage: /banslist
+    usage: /banlist
     description: Prints the entire ban list to the console.
   testeden:
     usage: /testeden
