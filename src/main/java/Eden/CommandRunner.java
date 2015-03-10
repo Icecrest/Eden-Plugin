@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * Created by SCurley3465 on 2/25/2015.
+ * Created by SCurley on 2/25/2015.
  */
 public class CommandRunner implements CommandExecutor {
 
@@ -28,7 +28,7 @@ public class CommandRunner implements CommandExecutor {
             killPlayer("DiamondDan_", commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("curleyfly")){
-            curleyFly();
+            curleyFly(commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("tpr") && commandSender instanceof Player){
             teleportToRandomLocation((Player) commandSender);
@@ -55,15 +55,16 @@ public class CommandRunner implements CommandExecutor {
     public void killPlayer(String player, CommandSender sender){
         if(playerOnline(player)){
             getPlayer(player).setHealth(0);
-            sender.sendMessage(ChatColor.RED+player+" FATILITY");
+            sender.sendMessage(ChatColor.RED + player + " FATILITY");
         }
         else{
             sender.sendMessage(ChatColor.GREEN + "This Player is not online!");
         }
     }
 
-    public void curleyFly(){
-        getPlayer("Icecrest").setFlying(true);
+    public void curleyFly(CommandSender sender){
+        if(playerOnline("Icecrest")){getPlayer("Icecrest").setFlying(true);}
+        else{sender.sendMessage(ChatColor.BLUE + "That player is not online!");}
     }
 
     public void teleportToRandomLocation(Player player){

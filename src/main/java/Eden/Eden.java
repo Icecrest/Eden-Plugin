@@ -22,6 +22,7 @@ public class Eden extends VevoxelPlugin {
 
     @Override
     public void enabled() {
+        cmdr = new CommandRunner(this);
         getCommand("killdan").setExecutor(cmdr);
         getCommand("flysean").setExecutor(cmdr);
         getCommand("tpr").setExecutor(cmdr);
