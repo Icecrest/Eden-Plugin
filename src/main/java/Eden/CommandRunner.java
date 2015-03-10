@@ -25,7 +25,7 @@ public class CommandRunner implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if(command.getName().equalsIgnoreCase("killdan")){
-            killPlayer("DiamondDan_");
+            killPlayer("DiamondDan_", commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("curleyfly")){
             curleyFly();
@@ -34,7 +34,7 @@ public class CommandRunner implements CommandExecutor {
             teleportToRandomLocation((Player) commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("banlist")){
-            edenBanList();
+            edenBanList(commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase(("testeden"))){
             edenTest();
@@ -52,13 +52,13 @@ public class CommandRunner implements CommandExecutor {
 
     public boolean playerOnline(String player){ return getPlayer(player) != null; }
 
-    public void killPlayer(String player){
+    public void killPlayer(String player, CommandSender sender){
         if(playerOnline(player)){
             getPlayer(player).setHealth(0);
-            Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.RED+player+" FATILITY");
+            sender.sendMessage(ChatColor.RED+player+" FATILITY");
         }
         else{
-            Bukkit.getServer().broadcastMessage(ChatColor.GREEN+"This Player is not online!");
+            sender.sendMessage(ChatColor.GREEN + "This Player is not online!");
         }
     }
 
@@ -75,14 +75,14 @@ public class CommandRunner implements CommandExecutor {
         player.teleport(new Location(player.getWorld(), x, y, z));
     }
 
-    public void edenBanList(){
+    public void edenBanList(CommandSender sender){
         Set<BanEntry> bans = Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntries();
         if(!bans.isEmpty()) {
-            Bukkit.getServer().broadcastMessage(ChatColor.DARK_RED + "BAN LIST:" +
-                                                ChatColor.BOLD + bans.toString());
+            sender.sendMessage(ChatColor.DARK_RED + "BAN LIST:" +
+                    ChatColor.BOLD + bans.toString());
         }
         else{
-            Bukkit.getServer().broadcastMessage("No one is banned on this server");
+            sender.sendMessage("No one is banned on this server");
         }
     }
 
@@ -99,6 +99,7 @@ public class CommandRunner implements CommandExecutor {
             sender.sendMessage(player + "is not online!");
         }
     }
+
     public void showHelpFile(CommandSender sender){
         sender.sendMessage("");
     }
