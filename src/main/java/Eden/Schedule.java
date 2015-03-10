@@ -13,15 +13,14 @@ import java.util.ArrayList;
 public class Schedule extends BukkitRunnable {
     private Eden edenplugin;
     public Schedule(Eden e){edenplugin = e;}
+    int inc = 0;
     @Override
     public void run() {
         FileConfiguration config = edenplugin.sendConfig();
-        ArrayList<String> annoucements = new ArrayList<>();
-        annoucements.addAll(config.getStringList("annoucements"));
+        ArrayList<String> announcements = new ArrayList<>();
+        announcements.addAll(config.getStringList("announcements"));
         Bukkit.getServer().broadcastMessage(org.bukkit.ChatColor.AQUA + "[BROADCAST] ");
-        for(int i = 0; i <annoucements.size(); i++){
-            Bukkit.getServer().broadcastMessage(ChatColor.GREEN + annoucements.get(0));
-            config.getInt("time");
-        }
+        Bukkit.getServer().broadcastMessage(ChatColor.GREEN + announcements.get(inc++));
+        if(inc>announcements.size()-1) inc = 0;
     }
 }
