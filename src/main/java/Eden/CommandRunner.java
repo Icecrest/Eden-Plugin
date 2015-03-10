@@ -59,7 +59,9 @@ public class CommandRunner implements CommandExecutor {
     public void killPlayer(String player, CommandSender sender){
         if(playerOnline(player)){
             getPlayer(player).setHealth(0);
-            sender.sendMessage(ChatColor.RED + player + " FATILITY");
+            if(sender instanceof Player){
+                sender.sendMessage(ChatColor.RED + player + " FATILITY");
+            }
         }
         else{
             sender.sendMessage(ChatColor.GREEN + "This Player is not online!");
