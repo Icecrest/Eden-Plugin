@@ -31,7 +31,7 @@ public class CommandRunner implements CommandExecutor {
             curleyFly(commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("tpr") && commandSender instanceof Player){
-            teleportToRandomLocation((Player) commandSender);
+            teleportToRandomLocation(strings[0], commandSender);
             return true;
         }else if(command.getName().equalsIgnoreCase("banlist")){
             edenBanList(commandSender);
@@ -67,13 +67,25 @@ public class CommandRunner implements CommandExecutor {
         else{sender.sendMessage(ChatColor.BLUE + "That player is not online!");}
     }
 
-    public void teleportToRandomLocation(Player player){
-        Random r = new Random();
-        int x = r.nextInt(20000);
-        int z = r.nextInt(20000);
-        int y = 255;
+    public void teleportToRandomLocation(String name, CommandSender sender){
+        if(name != null) {
+            Player p = getPlayer(name);
+            Random r = new Random();
+            int x = r.nextInt(20000);
+            int z = r.nextInt(20000);
+            int y = 255;
 
-        player.teleport(new Location(player.getWorld(), x, y, z));
+            p.teleport(new Location(p.getWorld(), x, y, z));
+        }else{
+            Player p = (Player) sender;
+            Random r = new Random();
+            int x = r.nextInt(20000);
+            int z = r.nextInt(20000);
+            int y = 255;
+
+            p.teleport(new Location(p.getWorld(), x, y, z));
+
+        }
     }
 
     public void edenBanList(CommandSender sender){
