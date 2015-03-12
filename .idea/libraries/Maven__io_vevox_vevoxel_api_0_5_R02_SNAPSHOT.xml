@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: io.vevox:vevoxel-api:0.5-R02-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/vevox/vevoxel-api/0.5-R02-SNAPSHOT/vevoxel-api-0.5-R02-20150308.191136-3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/io/vevox/vevoxel-api/0.5-R02-SNAPSHOT/vevoxel-api-0.5-R02-20150308.191136-3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/vevox/vevoxel-api/0.5-R02-SNAPSHOT/vevoxel-api-0.5-R02-20150308.191136-3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
