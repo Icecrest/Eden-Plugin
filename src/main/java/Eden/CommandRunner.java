@@ -112,7 +112,7 @@ public class CommandRunner implements CommandExecutor {
 
     public void testPlayer(String player, CommandSender sender){
         if(playerOnline(player)){
-            sender.sendMessage(ChatColor.MAGIC + "" + ChatColor.GOLD + "aaaaa" + ChatColor.RED + player
+            sender.sendMessage(ChatColor.GOLD + "" + ChatColor.MAGIC + "aaaaa" + ChatColor.RED + player
                     + ChatColor.GOLD + "is online!" + ChatColor.MAGIC + "aaaaa" + ChatColor.GOLD + "\nRejoice!");
         }else{
             sender.sendMessage(player + "is not online!");
