@@ -1,9 +1,6 @@
 package Eden;
 
 import io.vevox.vevoxel.api.VevoxelPlugin;
-import io.vevox.vevoxel.data.ConfigHandler;
-import io.vevox.vevoxel.data.ConfigurationSystem;
-import io.vevox.vevoxel.data.PluginConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 
 

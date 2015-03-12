@@ -4,11 +4,8 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-import Eden.Schedule;
-import java.util.ArrayList;
+
 import java.util.Random;
 import java.util.Set;
 
@@ -79,7 +76,7 @@ public class CommandRunner implements CommandExecutor {
             Random r = new Random();
             int x = r.nextInt(20000);
             int z = r.nextInt(20000);
-            int y = 255;
+            int y = p.getWorld().getHighestBlockYAt(x,z);
 
             p.teleport(new Location(p.getWorld(), x, y, z));
         }else{
@@ -87,7 +84,7 @@ public class CommandRunner implements CommandExecutor {
             Random r = new Random();
             int x = r.nextInt(20000);
             int z = r.nextInt(20000);
-            int y = 255;
+            int y = p.getWorld().getHighestBlockYAt(x,z);
 
             p.teleport(new Location(p.getWorld(), x, y, z));
 
