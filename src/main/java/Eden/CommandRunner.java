@@ -43,6 +43,12 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("testplayer")){
             testPlayer(strings[0], commandSender);
             return true;
+        }else if(command.getName().equalsIgnoreCase("smite")){
+            smitePlayer(strings[0]);
+            return true;
+        }else if(command.getName().equalsIgnoreCase("playgod") && commandSender instanceof Player){
+            playGod(commandSender);
+            return true;
         }
         return false;
     }
@@ -113,6 +119,22 @@ public class CommandRunner implements CommandExecutor {
                     + ChatColor.GOLD + "is online! " + ChatColor.MAGIC + "aaaaa" + ChatColor.GOLD + "\nRejoice!");
         }else{
             sender.sendMessage(player + "is not online!");
+        }
+    }
+
+    public void smitePlayer(String player){
+        Player p = getPlayer(player);
+        p.getWorld().strikeLightning(p.getLocation());
+        p.getWorld().setThunderDuration(2);
+    }
+
+    public void playGod(CommandSender sender){
+        if(sender instanceof Player) {
+            Player p = (Player) sender;
+            p.getWorld().strikeLightningEffect(p.getLocation());
+        }
+        else{
+            Bukkit.getConsoleSender().sendMessage("You are not a player!");
         }
     }
 

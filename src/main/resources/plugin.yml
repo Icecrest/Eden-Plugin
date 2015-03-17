@@ -21,3 +21,9 @@ commands:
   testplayer:
     usage: /testplayer [PLAYERNAME]
     description: Tests for a player name and prints if they are online or not.
+  smite:
+    usage: /smite [PLAYERNAME]
+    description: Smites down your foes in glory!
+  playgod:
+    usage: /playgod
+    description: Makes you look invincible.
