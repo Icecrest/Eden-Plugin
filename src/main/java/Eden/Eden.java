@@ -28,6 +28,7 @@ public class Eden extends VevoxelPlugin {
         getCommand("testplayer").setExecutor(cmdr);
         getCommand("smite").setExecutor(cmdr);
         getCommand("playgod").setExecutor(cmdr);
+        getCommand("showinv").setExecutor(cmdr);
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         this.config = config;

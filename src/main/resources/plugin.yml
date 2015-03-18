@@ -27,3 +27,6 @@ commands:
   playgod:
     usage: /playgod
     description: Makes you look invincible.
+  showInv:
+    usage: /showinv [PLAYERNAME]
+    description:Shows the inventory of a certain player.

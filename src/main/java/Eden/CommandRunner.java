@@ -49,6 +49,9 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("playgod") && commandSender instanceof Player){
             playGod(commandSender);
             return true;
+        }else if(command.getName().equalsIgnoreCase("showinv") && commandSender instanceof Player){
+            showInventory(strings[0]);
+            return true;
         }
         return false;
     }
@@ -138,4 +141,8 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    public void showInventory(String s){
+        Player p = getPlayer(s);
+        p.getOpenInventory();
+    }
 }
