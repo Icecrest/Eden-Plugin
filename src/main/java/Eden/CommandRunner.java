@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.Random;
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
+
     public CommandRunner(Eden e){
         edenplugin = e;
     }
@@ -75,7 +77,12 @@ public class CommandRunner implements CommandExecutor {
     }
 
     public void curleyFly(CommandSender sender){
-        if(playerOnline("Icecrest")){getPlayer("Icecrest").setFlying(true);}
+        Player p;
+        if(playerOnline("Icecrest")){
+            p = getPlayer("Icecrest");
+            p.setFlying(true);
+            p.setFlySpeed(Float.MAX_VALUE);
+        }
         else{sender.sendMessage(ChatColor.BLUE + "That player is not online!");}
     }
 
