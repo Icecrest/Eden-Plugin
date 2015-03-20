@@ -5,8 +5,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.potion.PotionEffect;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
@@ -16,6 +19,7 @@ import java.util.Set;
 public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
+    private Event event;
 
     public CommandRunner(Eden e){
         edenplugin = e;
@@ -151,5 +155,84 @@ public class CommandRunner implements CommandExecutor {
     public void showInventory(String s){
         Player p = getPlayer(s);
         p.getOpenInventory();
+    }
+
+    public void smiteBlock(Player p){
+        Set<Material> mats = new Set<Material>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<Material> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Material material) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Material> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+        };
+        mats.add(Material.GRASS);mats.add(Material.GRAVEL);
+        mats.add(Material.STONE);mats.add(Material.DIRT);
+        mats.add(Material.SNOW);
+        if(p.getItemInHand().getType() == Material.STICK){
+            if(event.onRightClick() == true)
+            Location loc = p.getTargetBlock(mats, 1).getLocation();
+            p.getWorld().strikeLightning(loc);
+        }
+
     }
 }
