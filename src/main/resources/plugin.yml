@@ -30,3 +30,6 @@ commands:
   showInv:
     usage: /showinv [PLAYERNAME]
     description:Shows the inventory of a certain player.
+  smitestick:
+    usage: /smitestick
+    description: Gives you the SmiteStick

@@ -7,12 +7,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+
 import org.bukkit.Material;
 
 /**
@@ -62,6 +61,8 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("showinv") && commandSender instanceof Player){
             showInventory(strings[0]);
             return true;
+        }else if(command.getName().equalsIgnoreCase("smitestick") && commandSender instanceof Player){
+            smiteArea(sender);
         }
         return false;
     }
@@ -164,8 +165,15 @@ public class CommandRunner implements CommandExecutor {
         p.getOpenInventory();
     }
 
-    public void smiteArea(Player p){
+    public void smiteArea(CommandSender sender){
+        Player p = (Player) sender;
         ItemStack is = new ItemStack(Material.STICK, 1);
+        List<String> strings = new ArrayList<String>(2);
+        strings.add(0,"An ancient stick said to ");
+        strings.add(1,"hold the powers of the gods");
+        ItemMeta itemMeta = is.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.ITALIC + "The Smite Stick");
+        itemMeta.setLore(strings);
         if(p.getItemInHand().getType() != Material.STICK){
             p.setItemInHand(is);
         }else{
