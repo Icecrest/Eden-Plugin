@@ -1,35 +1,35 @@
 name: Eden
+version: 1.8.10
 main: Eden.Eden
-version: 1.8.9
 
 commands:
-  killdan:
-    usage: /killdan
-    description: Kills DiamondDan_ whenever you please.
-  flysean:
-    usage: /flysean
-    description: Makes Icecrest fly.
-  tpr:
-    usage: /tpr
-    description: Teleport to a random location.
-  banlist:
-    usage: /banlist
-    description: Prints the entire ban list to the console.
-  testeden:
-    usage: /testeden
-    description: Tests to see if the command runner is working.
-  testplayer:
-    usage: /testplayer [PLAYERNAME]
-    description: Tests for a player name and prints if they are online or not.
-  smite:
-    usage: /smite [PLAYERNAME]
-    description: Smites down your foes in glory!
-  playgod:
+   killdan:
+      usage: /killdan
+      description: Kills DiamondDan_ whenever you please.
+   flysean:
+      usage: /flysean
+      description: Makes Icecrest fly.
+   tpr:
+      usage: /tpr
+      description: Teleport to a random location.
+   banlist:
+      usage: /banlist
+      description: Prints the entire ban list to the console.
+   testeden:
+      usage: /testeden
+      description: Tests to see if the command runner is working.
+   testplayer:
+      usage: /testplayer [PLAYERNAME]
+      description: Tests for a player name and prints if they are online or not.
+   smite:
+      usage: /smite [PLAYERNAME]
+      description: Smites down your foes in glory!
+   playgod:
     usage: /playgod
     description: Makes you look invincible.
-  showInv:
-    usage: /showinv [PLAYERNAME]
-    description:Shows the inventory of a certain player.
-  smitestick:
-    usage: /smitestick
-    description: Gives you the SmiteStick
+   showinv:
+      usage: /showinv [PLAYERNAME]
+      description:Shows the inventory of a certain player.
+   smitestick:
+      usage: /smitestick
+      description: Gives you the SmiteStick
