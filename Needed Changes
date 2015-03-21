@@ -1,4 +1,3 @@
 The Changes:
 
-- We need to fix the issues with the tpr command, may be part of my edits.
-- Fix the toString() part of banlist, because its putting out a reference, not a string really.
+- FIX THE PLUGIN.YML!!!!!!!!!!!!!!!
