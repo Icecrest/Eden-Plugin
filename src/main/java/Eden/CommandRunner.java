@@ -20,8 +20,6 @@ import org.bukkit.Material;
 public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
-    private Event event;
-    private CommandSender sender;
 
     public CommandRunner(Eden e){
         edenplugin = e;
@@ -29,7 +27,6 @@ public class CommandRunner implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        this.sender = sender;
         if(command.getName().equalsIgnoreCase("killdan")){
             killPlayer("DiamondDan_", commandSender);
             return true;
@@ -62,12 +59,9 @@ public class CommandRunner implements CommandExecutor {
             showInventory(strings[0]);
             return true;
         }else if(command.getName().equalsIgnoreCase("smitestick") && commandSender instanceof Player){
-            smiteArea(sender);
+            smiteArea(commandSender);
         }
         return false;
-    }
-    public CommandSender getSender(){
-        return sender;
     }
 
     public Player getPlayer(String player){
@@ -168,7 +162,7 @@ public class CommandRunner implements CommandExecutor {
     public void smiteArea(CommandSender sender){
         Player p = (Player) sender;
         ItemStack is = new ItemStack(Material.STICK, 1);
-        List<String> strings = new ArrayList<String>(2);
+        List<String> strings = new ArrayList<>(2);
         strings.add(0,"An ancient stick said to ");
         strings.add(1,"hold the powers of the gods");
         ItemMeta itemMeta = is.getItemMeta();
