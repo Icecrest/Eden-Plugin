@@ -2,6 +2,7 @@ package Eden;
 
 import io.vevox.vevoxel.api.VevoxelPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 
 /**
@@ -20,6 +21,7 @@ public class Eden extends VevoxelPlugin {
     @Override
     public void enabled() {
         cmdr = new CommandRunner(this);
+
         getCommand("killdan").setExecutor(cmdr);
         getCommand("flysean").setExecutor(cmdr);
         getCommand("tpr").setExecutor(cmdr);
@@ -33,6 +35,7 @@ public class Eden extends VevoxelPlugin {
         FileConfiguration config = getConfig();
         this.config = config;
         new Schedule(this).runTaskTimer(this, 0L, config.getInt("time")*60*20);
+        getServer().getPluginManager().registerEvents(new Event(), this);
     }
 
     @Override

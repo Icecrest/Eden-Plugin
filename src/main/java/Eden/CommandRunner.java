@@ -6,12 +6,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
+import org.bukkit.Material;
 
 /**
  * Created by SCurley on 2/25/2015.
@@ -20,6 +22,7 @@ public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
     private Event event;
+    private CommandSender sender;
 
     public CommandRunner(Eden e){
         edenplugin = e;
@@ -27,6 +30,7 @@ public class CommandRunner implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        this.sender = sender;
         if(command.getName().equalsIgnoreCase("killdan")){
             killPlayer("DiamondDan_", commandSender);
             return true;
@@ -60,6 +64,9 @@ public class CommandRunner implements CommandExecutor {
             return true;
         }
         return false;
+    }
+    public CommandSender getSender(){
+        return sender;
     }
 
     public Player getPlayer(String player){
@@ -157,82 +164,13 @@ public class CommandRunner implements CommandExecutor {
         p.getOpenInventory();
     }
 
-    public void smiteBlock(Player p){
-        Set<Material> mats = new Set<Material>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Material> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Material material) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Material> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-        };
-        mats.add(Material.GRASS);mats.add(Material.GRAVEL);
-        mats.add(Material.STONE);mats.add(Material.DIRT);
-        mats.add(Material.SNOW);
-        if(p.getItemInHand().getType() == Material.STICK){
-            if(event.onRightClick() == true)
-            Location loc = p.getTargetBlock(mats, 1).getLocation();
-            p.getWorld().strikeLightning(loc);
+    public void smiteArea(Player p){
+        ItemStack is = new ItemStack(Material.STICK, 1);
+        if(p.getItemInHand().getType() != Material.STICK){
+            p.setItemInHand(is);
+        }else{
+            p.sendMessage(ChatColor.AQUA + "You already have a stick in hand!");
         }
-
     }
+
 }
