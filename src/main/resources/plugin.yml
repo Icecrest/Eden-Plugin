@@ -29,7 +29,7 @@ commands:
     description: Makes you look invincible.
    showinv:
       usage: /showinv [PLAYERNAME]
-      description:Shows the inventory of a certain player.
+      description: Shows the inventory of a certain player.
    smitestick:
       usage: /smitestick
       description: Gives you the SmiteStick

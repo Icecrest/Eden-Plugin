@@ -10,8 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 import java.util.Set;
 
 /**
@@ -89,7 +88,6 @@ public class Event implements Listener {
                 public void clear() {
 
                 }
-
             };
             mats.add(Material.GRASS);mats.add(Material.GRAVEL);
             mats.add(Material.STONE);mats.add(Material.DIRT);
