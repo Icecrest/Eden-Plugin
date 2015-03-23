@@ -26,6 +26,10 @@ public class CommandRunner implements CommandExecutor {
         edenplugin = e;
     }
 
+    public void stahpIt(CommandSender sender){
+        sender.sendMessage(ChatColor.AQUA + "Stahp tryin' ye dumarse!");
+    }
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if(command.getName().equalsIgnoreCase("killdan")){
@@ -34,11 +38,13 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("curleyfly")){
             curleyFly(commandSender);
             return true;
-        }else if(command.getName().equalsIgnoreCase("tpr") && commandSender instanceof Player){
-            if(strings.length>= 0) {
+        }else if(command.getName().equalsIgnoreCase("tpr")){
+            if(strings.length>= 0 && commandSender instanceof Player) {
                 teleportToRandomLocation(strings[0], commandSender);
-            }else{
+            }else if(strings.length == 0 && commandSender instanceof Player){
                 teleportToRandomLocation(null,commandSender);
+            }else{
+                stahpIt(commandSender);
             }
             return true;
         }else if(command.getName().equalsIgnoreCase("banlist")){
@@ -53,18 +59,27 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("smite")){
             smitePlayer(strings[0]);
             return true;
-        }else if(command.getName().equalsIgnoreCase("playgod") && commandSender instanceof Player){
-            playGod(commandSender);
+        }else if(command.getName().equalsIgnoreCase("playgod")){
+            if(commandSender instanceof Player){
+                playGod(commandSender);
+            }else{
+                stahpIt(commandSender);
+            }
             return true;
-        }else if(command.getName().equalsIgnoreCase("showinv") && commandSender instanceof Player){
-            showInventory(strings[0]);
+        }else if(command.getName().equalsIgnoreCase("showinv")){
+            if(commandSender instanceof Player){
+                showInventory(strings[0]);
+            }else{
+                stahpIt(commandSender);
+            }
             return true;
         }else if(command.getName().equalsIgnoreCase("smitestick")){
             if(commandSender instanceof Player){
                 smiteArea(commandSender);
             }else{
-                commandSender.sendMessage(ChatColor.AQUA + "stahp ye dumarse!");
+                stahpIt(commandSender);
             }
+            return true;
         }
         return false;
     }
