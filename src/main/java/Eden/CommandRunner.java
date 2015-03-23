@@ -59,8 +59,12 @@ public class CommandRunner implements CommandExecutor {
         }else if(command.getName().equalsIgnoreCase("showinv") && commandSender instanceof Player){
             showInventory(strings[0]);
             return true;
-        }else if(command.getName().equalsIgnoreCase("smitestick") && commandSender instanceof Player){
-            smiteArea(commandSender);
+        }else if(command.getName().equalsIgnoreCase("smitestick")){
+            if(commandSender instanceof Player){
+                smiteArea(commandSender);
+            }else{
+                commandSender.sendMessage(ChatColor.AQUA + "stahp ye dumarse!");
+            }
         }
         return false;
     }
