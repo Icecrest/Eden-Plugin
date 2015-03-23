@@ -16,6 +16,7 @@ import org.bukkit.Material;
 
 /**
  * Created by SCurley on 2/25/2015.
+ * @author SeanCurley
  */
 public class CommandRunner implements CommandExecutor {
 

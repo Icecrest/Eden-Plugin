@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 /**
  * Created by SCurley3465 on 2/24/2015.
+ * @author SeanCurley
  */
 public class Eden extends VevoxelPlugin {
 

@@ -16,6 +16,7 @@ import java.util.Set;
 
 /**
  * Created by SCurley3465 on 3/20/2015.
+ * @author SeanCurley
  */
 public class Event implements Listener {
 
