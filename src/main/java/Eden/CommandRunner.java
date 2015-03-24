@@ -4,6 +4,7 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
@@ -102,7 +103,7 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
-    public void curleyFly(CommandSender sender){
+   public void curleyFly(CommandSender sender){
         Player p;
         if(playerOnline("Icecrest")){
             p = getPlayer("Icecrest");
@@ -185,9 +186,11 @@ public class CommandRunner implements CommandExecutor {
         List<String> strings = new ArrayList<>(2);
         strings.add(0,"An ancient stick said to ");
         strings.add(1,"hold the powers of the gods");
+        is.addEnchantment(Enchantment.DURABILITY, 1);
         ItemMeta itemMeta = is.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.ITALIC + "The Smite Stick");
         itemMeta.setLore(strings);
+        is.setItemMeta(itemMeta);
         if(p.getItemInHand().getType() != Material.STICK){
             p.setItemInHand(is);
         }else{
