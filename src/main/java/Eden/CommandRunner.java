@@ -186,15 +186,15 @@ public class CommandRunner implements CommandExecutor {
         List<String> strings = new ArrayList<>(2);
         strings.add(0,"An ancient stick said to ");
         strings.add(1,"hold the powers of the gods");
-        is.addEnchantment(Enchantment.DURABILITY, 1);
+        is.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
         ItemMeta itemMeta = is.getItemMeta();
         itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.ITALIC + "The Smite Stick");
         itemMeta.setLore(strings);
         is.setItemMeta(itemMeta);
-        if(p.getItemInHand().getType() != Material.STICK){
+        if(!p.getInventory().contains(is)){
             p.setItemInHand(is);
         }else{
-            p.sendMessage(ChatColor.AQUA + "You already have a stick in hand!");
+            p.sendMessage(ChatColor.AQUA + "You already have a SmiteStick!");
         }
     }
 
