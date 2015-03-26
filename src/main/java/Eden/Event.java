@@ -36,83 +36,9 @@ public class Event implements Listener {
         itemMeta.setLore(strings);
         is.setItemMeta(itemMeta);
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            Set<Material> mats = new Set<Material>() {
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public boolean isEmpty() {
-                    return false;
-                }
-
-                @Override
-                public boolean contains(Object o) {
-                    return false;
-                }
-
-                @Override
-                public Iterator<Material> iterator() {
-                    return null;
-                }
-
-                @Override
-                public Object[] toArray() {
-                    return new Object[0];
-                }
-
-                @Override
-                public <T> T[] toArray(T[] a) {
-                    return null;
-                }
-
-                @Override
-                public boolean add(Material material) {
-                    return false;
-                }
-
-                @Override
-                public boolean remove(Object o) {
-                    return false;
-                }
-
-                @Override
-                public boolean containsAll(Collection<?> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean addAll(Collection<? extends Material> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean retainAll(Collection<?> c) {
-                    return false;
-                }
-
-                @Override
-                public boolean removeAll(Collection<?> c) {
-                    return false;
-                }
-
-                @Override
-                public void clear() {
-
-                }
-            };
-            mats.add(Material.GRASS);mats.add(Material.GRAVEL);
-            mats.add(Material.STONE);mats.add(Material.DIRT);
-            mats.add(Material.SNOW); mats.add(Material.LEAVES);
-            mats.add(Material.LEAVES_2); mats.add(Material.WOOD);
-            mats.add(Material.AIR);
+            Set<Material> mats = null;
             if (p.getItemInHand().isSimilar(is)) {
-                int x; int y; int z;
-                x = p.getTargetBlock(mats, 200).getX();
-                y = p.getTargetBlock(mats, 200).getY();
-                z = p.getTargetBlock(mats, 200).getZ();
-                Location loc = new Location(p.getWorld(), (double)x,(double)y,(double)z);
+
                 p.getWorld().strikeLightning(p.getTargetBlock(mats,200).getLocation());
             }
 
