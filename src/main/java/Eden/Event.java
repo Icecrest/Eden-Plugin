@@ -23,8 +23,6 @@ import java.util.Set;
  */
 public class Event implements Listener {
 
-    private Eden eden;
-
     @EventHandler
         public void onRightClick(PlayerInteractEvent event) {
         Player p = event.getPlayer();
@@ -108,13 +106,14 @@ public class Event implements Listener {
             mats.add(Material.STONE);mats.add(Material.DIRT);
             mats.add(Material.SNOW); mats.add(Material.LEAVES);
             mats.add(Material.LEAVES_2); mats.add(Material.WOOD);
+            mats.add(Material.AIR);
             if (p.getItemInHand().isSimilar(is)) {
                 int x; int y; int z;
                 x = p.getTargetBlock(mats, 200).getX();
                 y = p.getTargetBlock(mats, 200).getY();
                 z = p.getTargetBlock(mats, 200).getZ();
                 Location loc = new Location(p.getWorld(), (double)x,(double)y,(double)z);
-                p.getWorld().strikeLightning(loc);
+                p.getWorld().strikeLightning(p.getTargetBlock(mats,200).getLocation());
             }
 
         }
