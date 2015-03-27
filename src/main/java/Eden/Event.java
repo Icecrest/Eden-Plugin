@@ -9,7 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -41,6 +44,20 @@ public class Event implements Listener {
                 p.getWorld().strikeLightningEffect(p.getLocation());
             }
         }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent e){
+        Player p = e.getPlayer();
+        if(p.getItemInHand() != null) {
+            ItemStack is = p.getItemInHand();
+            if(is.getType().equals(Material.DIAMOND_PICKAXE)){
+                ItemMeta im = is.getItemMeta();
+
+            }
+        }
+
+
     }
 
 
