@@ -23,6 +23,11 @@ import java.util.Set;
  */
 public class Event implements Listener {
 
+    /**
+     *
+     * @param s gives a string to make an item
+     * @return custom ItemStack
+     */
     public ItemStack createCustomItem(String s){
         switch (s.toUpperCase()) {
             case "SMITESTICK":
@@ -55,13 +60,19 @@ public class Event implements Listener {
         public void onRightClick(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         ItemStack is = createCustomItem("smitestick");
-        ItemStack is2 = createCustomItem("godfeather");
-
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Set<Material> mats = null;
             if (p.getItemInHand().isSimilar(is)) {
                 p.getWorld().strikeLightning(p.getTargetBlock(mats,200).getLocation());
-            }else if(p.getItemInHand().isSimilar(is2)){
+            }
+        }
+    }
+    @EventHandler
+    public void playGod(PlayerInteractEvent event){
+        Player p = event.getPlayer();
+        ItemStack is = createCustomItem("godfeather");
+        if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
+            if(p.getItemInHand().isSimilar(is)){
                 p.getWorld().strikeLightningEffect(p.getLocation());
             }
         }
