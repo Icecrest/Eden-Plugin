@@ -6,14 +6,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffect;
 
-import java.util.*;
-
-import org.bukkit.Material;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by SCurley on 2/25/2015.
@@ -81,6 +80,12 @@ public class CommandRunner implements CommandExecutor {
                 stahpIt(commandSender);
             }
             return true;
+        }else if(command.getName().equalsIgnoreCase("create")){
+            if(commandSender instanceof Player && strings.length>=0){
+                createWeapon(commandSender, strings);
+            }else{
+                stahpIt(commandSender);
+            }
         }
         return false;
     }
@@ -195,6 +200,57 @@ public class CommandRunner implements CommandExecutor {
             p.setItemInHand(is);
         }else{
             p.sendMessage(ChatColor.AQUA + "You already have a SmiteStick!");
+        }
+    }
+
+    public void createWeapon(CommandSender sender, String[] strings){
+        Player p = (Player) sender;
+        int item = 0; int enchant = 1; int level = 2;
+        String i = strings[item].toUpperCase();
+        String e = strings[enchant].toUpperCase();
+        String l = strings[level].toUpperCase();
+        ItemStack itemStack = null; ItemMeta itemMeta = null;
+        switch(i){
+            case "WOODENSWORD":
+                itemStack = new ItemStack(Material.WOOD_SWORD);
+                itemMeta = itemStack.getItemMeta();
+                switch(e){
+                    case "DURABILITY":
+                        switch(l){
+                            case "1":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+                                break;
+                            case "2":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 2);
+                                break;
+                            case "3":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 3);
+                                break;
+                            case "4":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 4);
+                                break;
+                            case "5":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
+                                break;
+                            case "6":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 6);
+                                break;
+                            case "7":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 7);
+                                break;
+                            case "8":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 8);
+                                break;
+                            case "9":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 9);
+                                break;
+                            case "10":
+                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+                                break;
+
+                        }
+                }
+                p.setItemInHand(itemStack);
         }
     }
 

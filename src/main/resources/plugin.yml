@@ -33,3 +33,6 @@ commands:
    smitestick:
       usage: /smitestick
       description: Gives you the SmiteStick
+   create:
+      usage: /create [WEAPON][ENCHANTMENT][LEVEL]
+      description: Creates a custom weapon.

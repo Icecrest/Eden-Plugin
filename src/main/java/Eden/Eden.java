@@ -2,7 +2,6 @@ package Eden;
 
 import io.vevox.vevoxel.api.VevoxelPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 
 
 /**
@@ -33,6 +32,7 @@ public class Eden extends VevoxelPlugin {
         getCommand("playgod").setExecutor(cmdr);
         getCommand("showinv").setExecutor(cmdr);
         getCommand("smitestick").setExecutor(cmdr);
+        getCommand("create").setExecutor(cmdr);
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         this.config = config;
