@@ -23,45 +23,15 @@ import java.util.Set;
  */
 public class Event implements Listener {
 
-    public ItemStack createCustomItem(String s){
-        switch (s.toUpperCase()) {
-            case "SMITESTICK":
-                ItemStack is = new ItemStack(Material.STICK, 1);
-                List<String> strings = new ArrayList<>(2);
-                strings.add(0, "An ancient stick said to ");
-                strings.add(1, "hold the powers of the gods");
-                is.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
-                ItemMeta itemMeta = is.getItemMeta();
-                itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.ITALIC + "The Smite Stick");
-                itemMeta.setLore(strings);
-                is.setItemMeta(itemMeta);
-                return is;
-            case "GODFEATHER":
-                ItemStack is2 = new ItemStack(Material.FEATHER, 1);
-                List<String> strings2 = new ArrayList<>(2);
-                strings2.add(0, "A feather that was given as a gift");
-                strings2.add(1, " to man, so that they could bask in");
-                strings2.add(2, " godlike glory. Too bad it's temporary...");
-                is2.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
-                ItemMeta itemMeta2 = is2.getItemMeta();
-                itemMeta2.setDisplayName(ChatColor.GOLD + "" + ChatColor.ITALIC + "The God Feather");
-                itemMeta2.setLore(strings2);
-                is2.setItemMeta(itemMeta2);
-                return is2;
-        }
-        return null;
-    }
     @EventHandler
         public void onRightClick(PlayerInteractEvent event) {
         Player p = event.getPlayer();
-        ItemStack is = createCustomItem("smitestick");
-        ItemStack is2 = createCustomItem("godfeather");
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Set<Material> mats = null;
-            if (p.getItemInHand().isSimilar(is)) {
+            if (p.getItemInHand().isSimilar(EventItems.SMITE_STICK.getItemStack())) {
                 p.getWorld().strikeLightning(p.getTargetBlock(mats,200).getLocation());
-            }else if(p.getItemInHand().isSimilar(is2)){
+            }else if(p.getItemInHand().isSimilar(EventItems.GOD_FEATHER.getItemStack())){
                 p.getWorld().strikeLightningEffect(p.getLocation());
             }
         }
