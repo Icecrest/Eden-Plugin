@@ -48,12 +48,14 @@ public class Event implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e){
+        int num = 0;
         Player p = e.getPlayer();
         if(p.getItemInHand() != null) {
             ItemStack is = p.getItemInHand();
             if(is.getType().equals(Material.DIAMOND_PICKAXE)){
+                num++;
                 ItemMeta im = is.getItemMeta();
-
+                im.setLore("Number of blocks Broken: " + num);
             }
         }
 
