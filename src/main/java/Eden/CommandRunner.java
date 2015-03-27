@@ -27,7 +27,17 @@ public class CommandRunner implements CommandExecutor {
     }
 
     public void stahpIt(CommandSender sender) {
-        sender.sendMessage(ChatColor.AQUA + "Stahp tryin' ye dumarse!");
+        sender.sendMessage(ChatColor.RED + "WOT THE FOK DID YE JUST SAY 2 ME M8!?\n"+
+        ChatColor.GRAY + "i dropped out of newcastle primary skool im the sickest bloke ull ever meet & ive nicked ova 300 " +
+                "chocolate globbernaughts frum tha corner shop. im trained in street fitin' & im the strongest foker in " +
+                "tha entire newcastle gym. yer nothin to me but a cheeky lil bellend w/ a fit mum & fakebling. ill waste " +
+                "u and smash a fokin bottle oer yer head bruv, i swer 2 christ. ya think u can fokin run ya gabber at me " +
+                "whilst sittin on yer arse behind a lil screen? think again wanka. im callin me homeboys rite now preparin " +
+                "for a proper scrap. A roomble thatll make ur nan sore jus hearin about it. yer a waste bruv. me crew be all " +
+                "over tha place & ill beat ya to a proper fokin pulp with me fists wanka. if i aint satisfied w/ that ill borrow" +
+                " me m8s cricket paddle & see if that gets u the fok out o' newcastle ya daft kunt. if ye had seen this bloody " +
+                "fokin mess commin ye might a' kept ya gabber from runnin. but it seems yea stupid lil twat, innit? ima shite " +
+                "fury & ull drown in it m8. ur ina proper mess knob.");
     }
 
     @Override
@@ -173,19 +183,11 @@ public class CommandRunner implements CommandExecutor {
     }
 
     public void playGod(CommandSender sender) {
-        ItemStack is2 = new ItemStack(Material.FEATHER, 1);
-        List<String> strings2 = new ArrayList<>(2);
-        strings2.add(0, "A feather that was given as a gift");
-        strings2.add(1, " to man, so that they could bask in");
-        strings2.add(2, " godlike glory. Too bad it's temporary...");
-        is2.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
-        ItemMeta itemMeta2 = is2.getItemMeta();
-        itemMeta2.setDisplayName(ChatColor.GOLD + "" + ChatColor.ITALIC + "The God Feather");
-        itemMeta2.setLore(strings2);
-        is2.setItemMeta(itemMeta2);
+        ItemStack is = EventItems.GOD_FEATHER.getItemStack();
         Player p = (Player) sender;
-        if (!p.getInventory().contains(is2)) {
-            p.setItemInHand(is2);
+        if (!p.getInventory().contains(is)) {
+            p.getInventory().addItem(is);
+            p.updateInventory();
         } else {
             p.sendMessage(ChatColor.AQUA + "You already have a God Feather!");
         }
@@ -198,17 +200,10 @@ public class CommandRunner implements CommandExecutor {
 
     public void smiteArea(CommandSender sender) {
         Player p = (Player) sender;
-        ItemStack is = new ItemStack(Material.STICK, 1);
-        List<String> strings = new ArrayList<>(2);
-        strings.add(0, "An ancient stick said to ");
-        strings.add(1, "hold the powers of the gods");
-        is.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
-        ItemMeta itemMeta = is.getItemMeta();
-        itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.ITALIC + "The Smite Stick");
-        itemMeta.setLore(strings);
-        is.setItemMeta(itemMeta);
+        ItemStack is = EventItems.SMITE_STICK.getItemStack();
         if (!p.getInventory().contains(is)) {
-            p.setItemInHand(is);
+            p.getInventory().addItem(is);
+            p.updateInventory();
         } else {
             p.sendMessage(ChatColor.AQUA + "You already have a Smite Stick!");
         }
@@ -216,164 +211,11 @@ public class CommandRunner implements CommandExecutor {
 
     public void createWeapon(CommandSender sender, String[] strings) {
         Player p = (Player) sender;
-        int item = 0;
-        int enchant = 1;
-        int level = 2;
-        String i = strings[item].toUpperCase();
-        String e = strings[enchant].toUpperCase();
-        String l = strings[level].toUpperCase();
-        ItemStack itemStack = null;
-        ItemMeta itemMeta = null;
-        switch (i) {
-            case "WOODENSWORD":
-                itemStack = new ItemStack(Material.WOOD_SWORD);
-                itemMeta = itemStack.getItemMeta();
-                switch (e) {
-                    case "DURABILITY":
-                        switch (l) {
-                            case "1":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
-                                break;
-                            case "2":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 2);
-                                break;
-                            case "3":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 3);
-                                break;
-                            case "4":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 4);
-                                break;
-                            case "5":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
-                                break;
-                            case "6":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 6);
-                                break;
-                            case "7":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 7);
-                                break;
-                            case "8":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 8);
-                                break;
-                            case "9":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 9);
-                                break;
-                            case "10":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-                                break;
+        ItemStack itemStack = new ItemStack(Material.valueOf(strings[0].toUpperCase()));
+        itemStack.addUnsafeEnchantment(Enchantment.getByName(strings[1].toUpperCase()), Integer.parseInt(strings[2]));
 
-                        }
-                    case "SHARPNESS":
-                        switch (l) {
-                            case "1":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-                                break;
-                            case "2":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
-                                break;
-                            case "3":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
-                                break;
-                            case "4":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 4);
-                                break;
-                            case "5":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
-                                break;
-                            case "6":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 6);
-                                break;
-                            case "7":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
-                                break;
-                            case "8":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 8);
-                                break;
-                            case "9":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 9);
-                                break;
-                            case "10":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
-                                break;
-
-                        }
-                }
-                p.setItemInHand(itemStack);
-            case "IRONSWORD":
-                itemStack = new ItemStack(Material.IRON_SWORD);
-                itemMeta = itemStack.getItemMeta();
-                switch (e) {
-                    case "DURABILITY":
-                        switch (l) {
-                            case "1":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
-                                break;
-                            case "2":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 2);
-                                break;
-                            case "3":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 3);
-                                break;
-                            case "4":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 4);
-                                break;
-                            case "5":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
-                                break;
-                            case "6":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 6);
-                                break;
-                            case "7":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 7);
-                                break;
-                            case "8":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 8);
-                                break;
-                            case "9":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 9);
-                                break;
-                            case "10":
-                                itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-                                break;
-
-                        }
-                    case "SHARPNESS":
-                        switch (l) {
-                            case "1":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-                                break;
-                            case "2":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
-                                break;
-                            case "3":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
-                                break;
-                            case "4":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 4);
-                                break;
-                            case "5":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
-                                break;
-                            case "6":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 6);
-                                break;
-                            case "7":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
-                                break;
-                            case "8":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 8);
-                                break;
-                            case "9":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 9);
-                                break;
-                            case "10":
-                                itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
-                                break;
-
-                        }
-                }
-                p.setItemInHand(itemStack);
-        }
+        p.getInventory().addItem(itemStack);
+        p.updateInventory();
     }
 
 }
