@@ -55,7 +55,9 @@ public class Event implements Listener {
             if(is.getType().equals(Material.DIAMOND_PICKAXE)){
                 num++;
                 ItemMeta im = is.getItemMeta();
-                im.setLore("Number of blocks Broken: " + num);
+                List<String> lore = new ArrayList<String>();
+                lore.add("Number of blocks broken\nwith this pickaxe: " + num);
+                im.setLore(lore);
             }
         }
 
