@@ -37,7 +37,7 @@ public class Eden extends VevoxelPlugin {
         FileConfiguration config = getConfig();
         this.config = config;
         new Schedule(this).runTaskTimer(this, 0L, config.getInt("time")*60*20);
-        getServer().getPluginManager().registerEvents(new Event(), this);
+        getServer().getPluginManager().registerEvents(new Event(this), this);
     }
 
     @Override
