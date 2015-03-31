@@ -8,8 +8,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 
 /**
- * Created by SCurley3465 on 3/9/2015.
- * @author SeanCurley
+ * Created by Icecrest on 3/9/2015.
+ * @author Sean Curley
  */
 public class Schedule extends BukkitRunnable {
     private Eden edenplugin;

@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by SCurley3465 on 3/20/2015.
- * @author SeanCurley
+ * Created by Icecrest on 3/20/2015.
+ * @author Sean Curley
  */
 public class Event implements Listener {
 
@@ -56,6 +56,11 @@ public class Event implements Listener {
         }
         return null;
     }
+
+    /**
+     * Strikes lightning at a target block up to 200 blocks away.
+     * @param event that tracks right clicks done by players
+     */
     @EventHandler
         public void onRightClick(PlayerInteractEvent event) {
         Player p = event.getPlayer();
@@ -67,6 +72,11 @@ public class Event implements Listener {
             }
         }
     }
+
+    /**
+     * Strikes a LightningEffect at your location.
+     * @param event that tracks right clicks done by players
+     */
     @EventHandler
     public void playGod(PlayerInteractEvent event){
         Player p = event.getPlayer();

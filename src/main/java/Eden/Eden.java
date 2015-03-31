@@ -5,8 +5,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 
 /**
- * Created by SCurley3465 on 2/24/2015.
- * @author SeanCurley
+ * Created by Icecrest on 2/24/2015.
+ * @author Sean Curley
  */
 public class Eden extends VevoxelPlugin {
 

@@ -4,19 +4,23 @@ import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 /**
- * Created by SCurley on 2/25/2015.
- * @author SeanCurley
+ * Created by Icecrest on 2/25/2015.
+ * @author Sean Curley
  */
 public class CommandRunner implements CommandExecutor {
 
@@ -26,6 +30,11 @@ public class CommandRunner implements CommandExecutor {
         edenplugin = e;
     }
 
+    /**
+     * Has a String that writes out a special sequence
+     * to a console if they try to be stupid...
+     * @param sender gets the CommandSender
+     */
     public void stahpIt(CommandSender sender) {
         sender.sendMessage(ChatColor.AQUA + "Stahp tryin' ye dumarse!");
     }
@@ -43,7 +52,7 @@ public class CommandRunner implements CommandExecutor {
                 teleportToRandomLocation(strings[0], commandSender);
             } else if (strings.length == 0 && commandSender instanceof Player) {
                 teleportToRandomLocation(null, commandSender);
-            } else {
+            } else if(strings.length == 0 && commandSender instanceof ConsoleCommandSender){
                 stahpIt(commandSender);
             }
             return true;
@@ -91,17 +100,32 @@ public class CommandRunner implements CommandExecutor {
         return false;
     }
 
-    public Player getPlayer(String player) {
+    /**
+     * Searches for a Player and returns returns them if the Player is online.
+     * @param player String to search for a player by name.
+     * @return searched for Player instance
+     */
+    public Player findPlayerByName(String player) {
         return Bukkit.getServer().getPlayer(player);
     }
 
+    /**
+     * Returns a boolean value if the Player is online.
+     * @param player String searches for a player by their username
+     * @return true/false if the Player is online or not
+     */
     public boolean playerOnline(String player) {
-        return getPlayer(player) != null;
+        return findPlayerByName(player) != null;
     }
 
+    /**
+     * Kills a player of choice
+     * @param player Player to kill.
+     * @param sender tracks what/who is sending the command
+     */
     public void killPlayer(String player, CommandSender sender) {
         if (playerOnline(player)) {
-            getPlayer(player).setHealth(0);
+            findPlayerByName(player).setHealth(0);
             if (sender instanceof Player) {
                 sender.sendMessage(ChatColor.RED + player + " FATILITY");
             }
@@ -110,10 +134,14 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    /**
+     * Makes Icecrest fly.
+     * @param sender tracks who/what is sending the command
+     */
     public void curleyFly(CommandSender sender) {
         Player p;
         if (playerOnline("Icecrest")) {
-            p = getPlayer("Icecrest");
+            p = findPlayerByName("Icecrest");
             p.setFlying(true);
             p.setFlySpeed(Float.MAX_VALUE);
         } else {
@@ -121,9 +149,14 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    /**
+     * Teleports you or the player of choice to a random location in the world.
+     * @param name searches for a Player to work with.
+     * @param sender tracks who/what is sending the command.
+     */
     public void teleportToRandomLocation(String name, CommandSender sender) {
         if (name != null) {
-            Player p = getPlayer(name);
+            Player p = findPlayerByName(name);
             Random r = new Random();
             int x = r.nextInt(20000);
             int z = r.nextInt(20000);
@@ -142,6 +175,10 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    /**
+     * Outputs the bans to the sender
+     * @param sender tracks who/what to send the list to.
+     */
     public void edenBanList(CommandSender sender) {
         Set<BanEntry> bans = Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntries();
         if (!bans.isEmpty()) {
@@ -152,11 +189,12 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    @Deprecated
     public void edenTest() {
         Bukkit.getServer().broadcastMessage(ChatColor.GOLD + "This command has run");
         Bukkit.getMotd().equalsIgnoreCase("Dont use this server dummy");
     }
-
+    @Deprecated
     public void testPlayer(String player, CommandSender sender) {
         if (playerOnline(player)) {
             sender.sendMessage(ChatColor.GOLD + "" + ChatColor.MAGIC + "aaaaa" + ChatColor.RED + " " + player + " "
@@ -166,12 +204,22 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    /**
+     * Strikes a player with lightning.
+     * @param player
+     */
     public void smitePlayer(String player) {
-        Player p = getPlayer(player);
+        Player p = findPlayerByName(player);
         p.getWorld().strikeLightning(p.getLocation());
+        p.setHealth(0);
+
         p.getWorld().setThunderDuration(2);
     }
 
+    /**
+     * Gives a player a special item if they don't have one.
+     * @param sender tracks who/what is sending the command
+     */
     public void playGod(CommandSender sender) {
         ItemStack is2 = new ItemStack(Material.FEATHER, 1);
         List<String> strings2 = new ArrayList<>(2);
@@ -192,7 +240,7 @@ public class CommandRunner implements CommandExecutor {
     }
 
     public void showInventory(String s) {
-        Player p = getPlayer(s);
+        Player p = findPlayerByName(s);
         p.getOpenInventory();
     }
 
