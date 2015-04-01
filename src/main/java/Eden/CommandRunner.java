@@ -241,11 +241,19 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
-    public void showInventory(String s) {
-        Player p = findPlayerByName(s);
+    /**
+     * Shows the inventory of a player.
+     * @param player gets a name of a player to search for
+     */
+    public void showInventory(String player) {
+        Player p = findPlayerByName(player);
         p.getOpenInventory();
     }
 
+    /**
+     * Checks for, and gives a Smite Stick if the player does not have one
+     * @param sender checks if the CommandSender is a player or not
+     */
     public void smiteArea(CommandSender sender) {
         Player p = (Player) sender;
         ItemStack is = EventItems.SMITE_STICK.getItemStack();
@@ -257,6 +265,11 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
+    /**
+     * Creates a custom weapon.
+     * @param sender checks who/what is sending the command
+     * @param strings gets parameters for the weapon
+     */
     public void createWeapon(CommandSender sender, String[] strings) {
         Player p = (Player) sender;
         ItemStack itemStack = new ItemStack(Material.valueOf(strings[0].toUpperCase()));
