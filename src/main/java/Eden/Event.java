@@ -1,13 +1,17 @@
 package Eden;
 
 
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -57,6 +61,15 @@ public class Event implements Listener {
         }
 
 
+    }
+
+    public void onLogin(PlayerLoginEvent event){
+        Player p = event.getPlayer();
+        if(p.hasPlayedBefore()){
+            p.getInventory().addItem(EventItems.EASTER_EGG.getItemStack());
+            p.updateInventory();
+        }
+        p.sendMessage(ChatColor.LIGHT_PURPLE + "HAPPY EASTER!");
     }
 
 

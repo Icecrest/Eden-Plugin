@@ -14,7 +14,7 @@ import java.util.List;
  */
 public enum EventItems {
 
-    SMITE_STICK, GOD_FEATHER;
+    SMITE_STICK, GOD_FEATHER, EASTER_EGG;
 
     public ItemStack getItemStack(){
         switch(this){
@@ -23,7 +23,7 @@ public enum EventItems {
                 List<String> strings = new ArrayList<>(2);
                 strings.add(0, "An ancient stick said to ");
                 strings.add(1, "hold the powers of the gods");
-                is.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
+                is.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
                 ItemMeta itemMeta = is.getItemMeta();
                 itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.ITALIC + "The Smite Stick");
                 itemMeta.setLore(strings);
@@ -35,12 +35,20 @@ public enum EventItems {
                 strings2.add(0, "A feather that was given as a gift");
                 strings2.add(1, " to man, so that they could bask in");
                 strings2.add(2, " godlike glory. Too bad it's temporary...");
-                is2.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
+                is2.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
                 ItemMeta itemMeta2 = is2.getItemMeta();
                 itemMeta2.setDisplayName(ChatColor.GOLD + "" + ChatColor.ITALIC + "The God Feather");
                 itemMeta2.setLore(strings2);
                 is2.setItemMeta(itemMeta2);
                 return is2;
+            case EASTER_EGG:
+                ItemStack is3 = new ItemStack(Material.MONSTER_EGG, 1, (short)101);
+                List<String> strings3 = new ArrayList<>();
+                strings3.add(0, "Happy Easter!");
+                ItemMeta im3 = is3.getItemMeta();
+                im3.setLore(strings3);
+                im3.setDisplayName(ChatColor.LIGHT_PURPLE + "Easter Bunny");
+                is3.setItemMeta(im3);
         }
         return null;
     }
