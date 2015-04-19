@@ -274,6 +274,14 @@ public class CommandRunner implements CommandExecutor {
         p.updateInventory();
     }
 
+    public void setMiner(CommandSender sender, String item){
+        Player p = (Player)sender;
+        Set<Material> mats = null;
+        Player miner = (Player)p.getWorld().spawnEntity(p.getTargetBlock(mats, 200).getLocation(), EntityType.PLAYER);
+        ItemStack itemStack = new ItemStack(Material.getMaterial(item));
+        miner.setItemInHand(itemStack);
+    }
+
 
 
 }
