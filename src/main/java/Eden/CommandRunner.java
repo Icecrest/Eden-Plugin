@@ -1,5 +1,6 @@
 package Eden;
 
+import Eden.factions.Faction;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,6 +11,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ import java.util.Set;
 public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
+    private ArrayList<Faction> factions;
 
     public CommandRunner(Eden e) {
         edenplugin = e;
@@ -274,6 +277,17 @@ public class CommandRunner implements CommandExecutor {
         p.updateInventory();
     }
 
+    /**
+     * Creates a new Faction
+     * @param sender is creator and leader;
+     */
+    public void createFaction(CommandSender sender, String name){
+        Faction f = new Faction(name);
+        f.setLeader((Player) sender);
+    }
 
+    public void getFaction(String name){
+        factions.indexOf(new Faction(name));
+    }
 
 }
