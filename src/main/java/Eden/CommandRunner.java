@@ -1,17 +1,17 @@
 package Eden;
 
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.MetadataValue;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -284,9 +284,13 @@ public class CommandRunner implements CommandExecutor {
     public void setMiner(CommandSender sender){
         Player p = (Player)sender;
         Set<Material> mats = null;
+        List<Block> area = p.getLastTwoTargetBlocks(mats, 2);
         Player  miner = (Player) p.getWorld().spawnEntity(p.getTargetBlock(mats, 200).getLocation(), EntityType.PLAYER);
         ItemStack itemStack = new ItemStack(p.getItemInHand());
         miner.setItemInHand(itemStack);
+        while(miner.getTargetBlock(mats, 10).breakNaturally()){
+
+        }
 
     }
 
