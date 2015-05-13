@@ -2,18 +2,22 @@ package Eden.factions;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
 
 /**
  * @author Sean Curley
  */
-public class Faction {
+public class Faction implements Listener{
+
     private Player leader;
     private ArrayList<Player> members;
     private ArrayList<Player> officers;
     private ArrayList<Player> faction = new ArrayList<>();
     private String name;
+    private int power;
 
     public Faction(Player p, String name){
         leader = p;
@@ -71,5 +75,10 @@ public class Faction {
             leader = other;
             sendFactionMessage(p.getDisplayName() + " has stepped down! Hail " + other.getDisplayName());
         }
+    }
+
+    @EventHandler
+    public void addPower(Player){
+
     }
 }

@@ -1,5 +1,6 @@
 package Eden;
 
+import Eden.factions.Faction;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -11,6 +12,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -22,6 +24,7 @@ import java.util.Set;
 public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
+    private ArrayList<Faction> factions;
 
     public CommandRunner(Eden e) {
         edenplugin = e;
@@ -291,7 +294,10 @@ public class CommandRunner implements CommandExecutor {
         while(miner.getTargetBlock(mats, 10).breakNaturally()){
 
         }
+    }
 
+    public void createFaction(Player p, String name){
+        factions.add(new Faction(name));
     }
 
 
