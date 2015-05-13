@@ -1,7 +1,7 @@
 package Eden;
 
-import Eden.factions.Faction;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,7 +11,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -22,7 +22,6 @@ import java.util.Set;
 public class CommandRunner implements CommandExecutor {
 
     private Eden edenplugin;
-    private ArrayList<Faction> factions;
 
     public CommandRunner(Eden e) {
         edenplugin = e;
@@ -34,17 +33,19 @@ public class CommandRunner implements CommandExecutor {
      * @param sender gets the CommandSender
      */
     public void stahpIt(CommandSender sender) {
-        sender.sendMessage(ChatColor.RED + "WOT THE FOK DID YE JUST SAY 2 ME M8!?\n"+
-        ChatColor.GRAY + "i dropped out of newcastle primary skool im the sickest bloke ull ever meet & ive nicked ova 300 " +
-                "chocolate globbernaughts frum tha corner shop. im trained in street fitin' & im the strongest foker in " +
-                "tha entire newcastle gym. yer nothin to me but a cheeky lil bellend w/ a fit mum & fakebling. ill waste " +
-                "u and smash a fokin bottle oer yer head bruv, i swer 2 christ. ya think u can fokin run ya gabber at me " +
-                "whilst sittin on yer arse behind a lil screen? think again wanka. im callin me homeboys rite now preparin " +
-                "for a proper scrap. A roomble thatll make ur nan sore jus hearin about it. yer a waste bruv. me crew be all " +
-                "over tha place & ill beat ya to a proper fokin pulp with me fists wanka. if i aint satisfied w/ that ill borrow" +
-                " me m8s cricket paddle & see if that gets u the fok out o' newcastle ya daft kunt. if ye had seen this bloody " +
-                "fokin mess commin ye might a' kept ya gabber from runnin. but it seems yea stupid lil twat, innit? ima shite " +
-                "fury & ull drown in it m8. ur ina proper mess knob.");
+        for(int i = 0; i < 4; i++) {
+            sender.sendMessage(ChatColor.RED + "WOT THE FOK DID YE JUST SAY 2 ME M8!?\n" +
+                    ChatColor.GRAY + "i dropped out of newcastle primary skool im the sickest bloke ull ever meet & ive nicked ova 300 " +
+                    "chocolate globbernaughts frum tha corner shop. im trained in street fitin' & im the strongest foker in " +
+                    "tha entire newcastle gym. yer nothin to me but a cheeky lil bellend w/ a fit mum & fakebling. ill " +
+                    "waste u and smash a fokin bottle oer yer head bruv, i swer 2 christ. ya think u can fokin run ya gabber at me " +
+                    "whilst sittin on yer arse behind a lil screen? think again wanka. im callin me homeboys rite now preparin " +
+                    "for a proper scrap. A roomble thatll make ur nan sore jus hearin about it. yer a waste bruv. me crew be all " +
+                    "over tha place & ill beat ya to a proper fokin pulp with me fists wanka. if i aint satisfied w/ that ill borrow" +
+                    " me m8s cricket paddle & see if that gets u the fok out o' newcastle ya daft kunt. if ye had seen this bloody " +
+                    "fokin mess commin ye might a' kept ya gabber from runnin. but it seems yea stupid lil twat, innit? ima shite " +
+                    "fury & ull drown in it m8. ur ina proper mess knob.");
+        }
     }
 
     @Override
@@ -103,6 +104,9 @@ public class CommandRunner implements CommandExecutor {
             } else {
                 stahpIt(commandSender);
             }
+            return true;
+        } else if (command.getName().equalsIgnoreCase("setminer")) {
+            setMiner(commandSender);
             return true;
         }
         return false;
@@ -277,17 +281,19 @@ public class CommandRunner implements CommandExecutor {
         p.updateInventory();
     }
 
-    /**
-     * Creates a new Faction
-     * @param sender is creator and leader;
-     */
-    public void createFaction(CommandSender sender, String name){
-        Faction f = new Faction(name);
-        f.setLeader((Player) sender);
+    public void setMiner(CommandSender sender){
+        Player p = (Player)sender;
+        Set<Material> mats = null;
+        List<Block> area = p.getLastTwoTargetBlocks(mats, 2);
+        Player  miner = (Player) p.getWorld().spawnEntity(p.getTargetBlock(mats, 200).getLocation(), EntityType.PLAYER);
+        ItemStack itemStack = new ItemStack(p.getItemInHand());
+        miner.setItemInHand(itemStack);
+        while(miner.getTargetBlock(mats, 10).breakNaturally()){
+
+        }
+
     }
 
-    public void getFaction(String name){
-        factions.indexOf(new Faction(name));
-    }
+
 
 }
