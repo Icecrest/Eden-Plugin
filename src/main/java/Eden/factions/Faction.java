@@ -78,7 +78,7 @@ public class Faction implements Listener{
     }
 
     @EventHandler
-    public void addPower(Player){
+    public void addPower(Player p){
 
     }
 }

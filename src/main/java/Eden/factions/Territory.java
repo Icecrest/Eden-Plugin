@@ -19,4 +19,26 @@ public class Territory {
         }
     }
 
+    public Faction getOwner(){
+        return owner;
+    }
+
+    public void getValue(int i) throws NullTerritoryException {
+        switch(i){
+         case(0):
+             break;
+         case(1):
+             break;
+         case(2):
+             break;
+         case(3):
+             break;
+         case(4):
+             break;
+         case(5):
+             break;
+         default:
+             throw new NullTerritoryException("No territory on this chunk!");
+        }
+    }
 }

@@ -1,7 +1,13 @@
 package Eden;
 
+import Eden.factions.TerritoryType;
 import io.vevox.vevoxel.api.VevoxelPlugin;
+import io.vevox.vevoxel.data.PluginData;
+import org.bukkit.Chunk;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 
 /**
@@ -10,8 +16,11 @@ import org.bukkit.configuration.file.FileConfiguration;
  */
 public class Eden extends VevoxelPlugin {
 
+    private PluginData data;
     private FileConfiguration config;
     private CommandRunner cmdr;
+    private HashMap<Chunk, TerritoryType> map;
+    private EdenStore store;
 
     @Override
     protected void loaded() {
@@ -38,6 +47,16 @@ public class Eden extends VevoxelPlugin {
         this.config = config;
         new Schedule(this).runTaskTimer(this, 0L, config.getInt("time")*60*20);
         getServer().getPluginManager().registerEvents(new Event(this), this);
+        try {
+            data.load();
+        } catch (IOException | ClassNotFoundException e) {
+            getConsole().error("Failed to load data!");
+            getConsole().exception(e);
+            setEnabled(false);
+            return;
+        }
+        //store = data.get("gates") != null ? data.get("store") : new EdenStore();
+
     }
 
     @Override
@@ -47,4 +66,5 @@ public class Eden extends VevoxelPlugin {
     public FileConfiguration sendConfig(){
         return config;
     }
+    public HashMap<Chunk, TerritoryType> sendMap(){return map;}
 }

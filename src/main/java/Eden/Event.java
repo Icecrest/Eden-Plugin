@@ -1,6 +1,7 @@
 package Eden;
 
 
+import Eden.factions.TerritoryType;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,6 +11,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -68,6 +70,13 @@ public class Event implements Listener {
             p.updateInventory();
         }
         p.sendMessage(ChatColor.LIGHT_PURPLE + "HAPPY EASTER!");
+    }
+
+    @EventHandler
+    public void onSight(ChunkLoadEvent e){
+        if(!plugin.sendMap().containsKey(e.getChunk()))
+            plugin.sendMap().put(e.getChunk(), TerritoryType.NEUTRAL);
+
     }
 
 
