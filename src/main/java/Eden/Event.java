@@ -2,6 +2,7 @@ package Eden;
 
 
 import Eden.factions.TerritoryType;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -18,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by SCurley3465 on 3/20/2015.
@@ -63,6 +65,10 @@ public class Event implements Listener {
 
     }
 
+    /**
+     * @deprecated
+     * @param event
+     */
     public void onLogin(PlayerLoginEvent event){
         Player p = event.getPlayer();
         if(p.hasPlayedBefore()){
@@ -76,6 +82,22 @@ public class Event implements Listener {
     public void onSight(ChunkLoadEvent e){
         if(!plugin.sendMap().containsKey(e.getChunk()))
             plugin.sendMap().put(e.getChunk(), TerritoryType.NEUTRAL);
+    }
+
+    @EventHandler
+    public void fourthOfJuly(PlayerLoginEvent e){
+        Player p = e.getPlayer();
+        List<Player> players = new ArrayList<>();
+        if(!p.hasPlayedBefore()){
+            players.add(p);
+        }
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
+            @Override
+            public void run(){
+
+            }
+        },5L,20*60*1L);
+
 
     }
 
