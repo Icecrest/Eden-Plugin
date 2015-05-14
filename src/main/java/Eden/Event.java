@@ -5,6 +5,7 @@ import Eden.factions.TerritoryType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -94,7 +95,7 @@ public class Event implements Listener {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
             @Override
             public void run(){
-
+                p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
             }
         },5L,20*60*1L);
 
