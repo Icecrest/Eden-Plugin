@@ -2,25 +2,29 @@ package Eden;
 
 
 import Eden.factions.TerritoryType;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import io.vevox.vevoxel.math.TimeUtil;
+import org.bukkit.*;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.server.ServerEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by SCurley3465 on 3/20/2015.
@@ -87,18 +91,6 @@ public class Event implements Listener {
 
     @EventHandler
     public void fourthOfJuly(PlayerLoginEvent e){
-        Player p = e.getPlayer();
-        List<Player> players = new ArrayList<>();
-        if(!p.hasPlayedBefore()){
-            players.add(p);
-        }
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable(){
-            @Override
-            public void run(){
-                p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
-            }
-        },5L,20*60*1L);
-
 
     }
 

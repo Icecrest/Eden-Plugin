@@ -3,11 +3,22 @@ package Eden;
 import Eden.factions.TerritoryType;
 import io.vevox.vevoxel.api.VevoxelPlugin;
 import io.vevox.vevoxel.data.PluginData;
+import io.vevox.vevoxel.math.TimeUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -16,6 +27,7 @@ import java.util.HashMap;
  */
 public class Eden extends VevoxelPlugin {
 
+    private static final Random r = new Random();
     private PluginData data;
     private FileConfiguration config;
     private CommandRunner cmdr;
@@ -30,6 +42,7 @@ public class Eden extends VevoxelPlugin {
     @Override
     public void enabled() {
         cmdr = new CommandRunner(this);
+        data = getData();
 
         getCommand("killdan").setExecutor(cmdr);
         getCommand("flysean").setExecutor(cmdr);
@@ -47,6 +60,7 @@ public class Eden extends VevoxelPlugin {
         this.config = config;
         new Schedule(this).runTaskTimer(this, 0L, config.getInt("time")*60*20);
         getServer().getPluginManager().registerEvents(new Event(this), this);
+        /*
         try {
             data.load();
         } catch (IOException | ClassNotFoundException e) {
@@ -54,6 +68,24 @@ public class Eden extends VevoxelPlugin {
             getConsole().exception(e);
             setEnabled(false);
             return;
+        }
+        */
+
+
+        if(Bukkit.getOnlinePlayers().size() != 0) {
+            Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BukkitRunnable() {
+                @Override
+                public void run() {
+                    r.setSeed(System.nanoTime());
+                    Player p = Bukkit.getOnlinePlayers().toArray(new Player[0])[r.nextInt(Bukkit.getOnlinePlayers().size())];
+                    FireworkEffect effect = FireworkEffect.builder().withColor(Color.BLUE).flicker(true).trail(true)
+                            .withFade(Color.RED, Color.WHITE).with(FireworkEffect.Type.STAR).build();
+                    Firework f = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
+                    FireworkMeta meta = f.getFireworkMeta();
+                    meta.addEffect(effect);
+                    f.detonate();
+                }
+            }, 5L, TimeUtil.TICKS_PER_MINUTE * 5);
         }
         //store = data.get("gates") != null ? data.get("store") : new EdenStore();
 

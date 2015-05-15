@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class Faction implements Listener{
 
     private Player leader;
-    private ArrayList<Player> members;
-    private ArrayList<Player> officers;
+    private ArrayList<Player> members = new ArrayList<>();
+    private ArrayList<Player> officers = new ArrayList<>();
     private ArrayList<Player> faction = new ArrayList<>();
     private String name;
     private int power;
@@ -23,10 +23,6 @@ public class Faction implements Listener{
         leader = p;
         this.name = name;
         faction.add(p);
-    }
-
-    public Faction(String name){
-        this.name = name;
     }
 
     public void setLeader(Player p){
@@ -80,5 +76,9 @@ public class Faction implements Listener{
     @EventHandler
     public void addPower(Player p){
 
+    }
+
+    public String getName(){
+        return name;
     }
 }

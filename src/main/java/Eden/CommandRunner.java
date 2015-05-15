@@ -296,8 +296,14 @@ public class CommandRunner implements CommandExecutor {
         }
     }
 
-    public void createFaction(Player p, String name){
-        factions.add(new Faction(name));
+    /**
+     * Creates a new faction.
+     * @param sender leader of the new faction.
+     * @param name of the new faction.
+     */
+    public void createFaction(CommandSender sender, String name){
+        factions.add(new Faction((Player) sender, name));
+        sender.sendMessage("You have successfully created a new faction!");
     }
 
 
