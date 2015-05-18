@@ -28,7 +28,7 @@
         <dependency>
             <groupId>io.vevox</groupId>
             <artifactId>vevoxel-api</artifactId>
-            <version>0.5-R02-SNAPSHOT</version>
+            <version>0.6-R03-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

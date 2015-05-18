@@ -4,10 +4,7 @@ import Eden.factions.TerritoryType;
 import io.vevox.vevoxel.api.VevoxelPlugin;
 import io.vevox.vevoxel.data.PluginData;
 import io.vevox.vevoxel.math.TimeUtil;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -33,6 +30,7 @@ public class Eden extends VevoxelPlugin {
     private CommandRunner cmdr;
     private HashMap<Chunk, TerritoryType> map;
     private EdenStore store;
+    private HashMap<Player, Effect> effects;
 
     @Override
     protected void loaded() {
@@ -60,7 +58,7 @@ public class Eden extends VevoxelPlugin {
         this.config = config;
         new Schedule(this).runTaskTimer(this, 0L, config.getInt("time")*60*20);
         getServer().getPluginManager().registerEvents(new Event(this), this);
-        /*
+
         try {
             data.load();
         } catch (IOException | ClassNotFoundException e) {
@@ -69,8 +67,8 @@ public class Eden extends VevoxelPlugin {
             setEnabled(false);
             return;
         }
-        */
 
+        store = data.get("territories") != null ? data.get("territories", EdenStore.class) : new EdenStore();
 
         if(Bukkit.getOnlinePlayers().size() != 0) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BukkitRunnable() {
@@ -93,10 +91,15 @@ public class Eden extends VevoxelPlugin {
 
     @Override
     public void disabled() {
-
+        try {
+            data.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public FileConfiguration sendConfig(){
         return config;
     }
     public HashMap<Chunk, TerritoryType> sendMap(){return map;}
+    public HashMap<Player, Effect> sendEffects(){return effects;}
 }

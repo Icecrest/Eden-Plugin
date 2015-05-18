@@ -111,6 +111,9 @@ public class CommandRunner implements CommandExecutor {
         } else if (command.getName().equalsIgnoreCase("setminer")) {
             setMiner(commandSender);
             return true;
+        } else if (command.getName().equalsIgnoreCase("seteffect")) {
+            setEffect(commandSender, strings[0]);
+            return true;
         }
         return false;
     }
@@ -304,6 +307,11 @@ public class CommandRunner implements CommandExecutor {
     public void createFaction(CommandSender sender, String name){
         factions.add(new Faction((Player) sender, name));
         sender.sendMessage("You have successfully created a new faction!");
+    }
+
+
+    public void setEffect(CommandSender sender, String s){
+        edenplugin.sendEffects().put((Player)sender, Effect.valueOf(s));
     }
 
 

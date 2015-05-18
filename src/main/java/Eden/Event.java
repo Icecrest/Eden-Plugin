@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.server.ServerEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.ItemStack;
@@ -90,7 +91,11 @@ public class Event implements Listener {
     }
 
     @EventHandler
-    public void fourthOfJuly(PlayerLoginEvent e){
+    public void onPlayerWalk(PlayerMoveEvent e){
+        Player p = e.getPlayer();
+        if(plugin.sendEffects() != null) {
+            p.playEffect(p.getLocation(), plugin.sendEffects().get(p), p);
+        }
 
     }
 
