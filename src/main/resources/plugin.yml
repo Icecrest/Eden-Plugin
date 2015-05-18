@@ -36,3 +36,6 @@ commands:
    create:
       usage: /create [WEAPON][ENCHANTMENT][LEVEL]
       description: Creates a custom weapon.
+   seteffect:
+      usage: /seteffect [EFFECT]
+      description: Adds an effect to a player's walking animation.
