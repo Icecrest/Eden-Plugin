@@ -58,7 +58,7 @@ public class Eden extends VevoxelPlugin {
         this.config = config;
         new Schedule(this).runTaskTimer(this, 0L, config.getInt("time")*60*20);
         getServer().getPluginManager().registerEvents(new Event(this), this);
-
+/*
         try {
             data.load();
         } catch (IOException | ClassNotFoundException e) {
@@ -69,7 +69,7 @@ public class Eden extends VevoxelPlugin {
         }
 
         store = data.get("territories") != null ? data.get("territories", EdenStore.class) : new EdenStore();
-
+*/
         if(Bukkit.getOnlinePlayers().size() != 0) {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BukkitRunnable() {
                 @Override
@@ -91,11 +91,7 @@ public class Eden extends VevoxelPlugin {
 
     @Override
     public void disabled() {
-        try {
-            data.save();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
     public FileConfiguration sendConfig(){
         return config;

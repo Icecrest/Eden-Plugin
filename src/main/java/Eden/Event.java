@@ -4,14 +4,12 @@ package Eden;
 import Eden.factions.TerritoryType;
 import io.vevox.vevoxel.math.TimeUtil;
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Firework;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -83,20 +81,30 @@ public class Event implements Listener {
         }
         p.sendMessage(ChatColor.LIGHT_PURPLE + "HAPPY EASTER!");
     }
-
+/*
     @EventHandler
     public void onSight(ChunkLoadEvent e){
         if(!plugin.sendMap().containsKey(e.getChunk()))
             plugin.sendMap().put(e.getChunk(), TerritoryType.NEUTRAL);
     }
+    */
 
     @EventHandler
     public void onPlayerWalk(PlayerMoveEvent e){
         Player p = e.getPlayer();
         if(plugin.sendEffects() != null) {
-            p.playEffect(p.getLocation(), plugin.sendEffects().get(p), p);
+            if(plugin.sendEffects().get(p) != null) {
+                p.playEffect(p.getLocation(), plugin.sendEffects().get(p), p);
+            }
         }
 
+    }
+
+    @EventHandler
+    public void onDeath(EntityDeathEvent e){
+        if(e.getEntity() instanceof LightningStrike){
+
+        }
     }
 
 

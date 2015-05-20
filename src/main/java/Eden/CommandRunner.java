@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -311,7 +312,13 @@ public class CommandRunner implements CommandExecutor {
 
 
     public void setEffect(CommandSender sender, String s){
-        edenplugin.sendEffects().put((Player)sender, Effect.valueOf(s));
+        edenplugin.sendEffects().put((Player)sender, Effect.valueOf(s.toUpperCase()));
+    }
+
+    public void lightningRider(CommandSender sender){
+        Player p = (Player) sender;
+        LightningStrike strike = p.getWorld().strikeLightning(p.getLocation());
+        p.setPassenger(strike);
     }
 
 
