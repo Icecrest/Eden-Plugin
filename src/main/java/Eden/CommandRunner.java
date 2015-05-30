@@ -112,8 +112,11 @@ public class CommandRunner implements CommandExecutor {
         } else if (command.getName().equalsIgnoreCase("setminer")) {
             setMiner(commandSender);
             return true;
-        } else if (command.getName().equalsIgnoreCase("seteffect") == commandSender instanceof Player) {
+        } else if (command.getName().equalsIgnoreCase("seteffect") && commandSender instanceof Player) {
             setEffect(commandSender, strings[0]);
+            return true;
+        } else if (command.getName().equalsIgnoreCase("enchant") && commandSender instanceof Player){
+            enchant(commandSender, strings);
             return true;
         }
         return false;
@@ -229,8 +232,10 @@ public class CommandRunner implements CommandExecutor {
      */
     public void smitePlayer(String player) {
         Player p = findPlayerByName(player);
-        p.getWorld().strikeLightning(p.getLocation());
+        Location temp = p.getBedSpawnLocation();
+        p.getWorld().strikeLightningEffect(p.getLocation());
         p.setHealth(0);
+
 
         p.getWorld().setThunderDuration(2);
     }
@@ -319,6 +324,11 @@ public class CommandRunner implements CommandExecutor {
         Player p = (Player) sender;
         LightningStrike strike = p.getWorld().strikeLightning(p.getLocation());
         p.setPassenger(strike);
+    }
+
+    public void enchant(CommandSender sender, String[] strings){
+            Player p = (Player)sender;
+        p.getItemInHand().addUnsafeEnchantment(Enchantment.getByName(strings[0]), Integer.parseInt(strings[1]));
     }
 
 

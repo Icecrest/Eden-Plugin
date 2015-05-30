@@ -39,3 +39,6 @@ commands:
    seteffect:
       usage: /seteffect [EFFECT]
       description: Adds an effect to a player's walking animation.
+   enchant:
+      usage: /enchant [ENCHANTMENT] [LEVEL]
+      description: Adds an enchantment to the player's item.

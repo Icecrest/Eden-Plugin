@@ -30,7 +30,7 @@ public class Eden extends VevoxelPlugin {
     private CommandRunner cmdr;
     private HashMap<Chunk, TerritoryType> map;
     private EdenStore store;
-    private HashMap<Player, Effect> effects;
+    private HashMap<Player, Effect> effects = new HashMap<>();
 
     @Override
     protected void loaded() {
@@ -54,6 +54,7 @@ public class Eden extends VevoxelPlugin {
         getCommand("smitestick").setExecutor(cmdr);
         getCommand("create").setExecutor(cmdr);
         getCommand("seteffect").setExecutor(cmdr);
+        getCommand("enchant").setExecutor(cmdr);
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         this.config = config;
