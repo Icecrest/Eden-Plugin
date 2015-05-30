@@ -112,7 +112,7 @@ public class CommandRunner implements CommandExecutor {
         } else if (command.getName().equalsIgnoreCase("setminer")) {
             setMiner(commandSender);
             return true;
-        } else if (command.getName().equalsIgnoreCase("seteffect")) {
+        } else if (command.getName().equalsIgnoreCase("seteffect") == commandSender instanceof Player) {
             setEffect(commandSender, strings[0]);
             return true;
         }

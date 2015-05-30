@@ -53,6 +53,7 @@ public class Eden extends VevoxelPlugin {
         getCommand("showinv").setExecutor(cmdr);
         getCommand("smitestick").setExecutor(cmdr);
         getCommand("create").setExecutor(cmdr);
+        getCommand("seteffect").setExecutor(cmdr);
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         this.config = config;

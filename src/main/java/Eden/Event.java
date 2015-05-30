@@ -43,7 +43,6 @@ public class Event implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Set<Material> mats = null;
             if (p.getItemInHand().isSimilar(EventItems.SMITE_STICK.getItemStack())) {
-                plugin.getConsole().debug("Smite stick right clicked!");
                 p.getWorld().strikeLightning(p.getTargetBlock(mats,200).getLocation());
             }else if(p.getItemInHand().isSimilar(EventItems.GOD_FEATHER.getItemStack())){
                 p.getWorld().strikeLightningEffect(p.getLocation());
