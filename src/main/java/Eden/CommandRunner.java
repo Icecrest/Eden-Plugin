@@ -12,6 +12,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -322,13 +323,23 @@ public class CommandRunner implements CommandExecutor {
 
     public void lightningRider(CommandSender sender){
         Player p = (Player) sender;
-        LightningStrike strike = p.getWorld().strikeLightning(p.getLocation());
-        p.setPassenger(strike);
+       LightningStrike strike = p.getWorld().strikeLightningEffect(p.getLocation());
+        strike.setPassenger(p);
+
+
     }
 
     public void enchant(CommandSender sender, String[] strings){
             Player p = (Player)sender;
         p.getItemInHand().addUnsafeEnchantment(Enchantment.getByName(strings[0]), Integer.parseInt(strings[1]));
+    }
+
+    public void bookMagic(CommandSender sender, String[] strings){
+        Player p = (Player) sender;
+        ItemStack stack = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta meta = stack.getItemMeta();
+
+
     }
 
 

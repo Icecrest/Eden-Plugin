@@ -98,10 +98,13 @@ public class Event implements Listener {
     }
 
     @EventHandler
-    public void onDeath(EntityDeathEvent e){
+    public void LightningRider(EntityDeathEvent e){
         if(e.getEntity() instanceof LightningStrike){
-
+            if(e.getEntity().isDead() && e.getEntity().getPassenger() != null){
+                e.getEntity().setHealth(Integer.MAX_VALUE);
+            }
         }
+
     }
 
 
